@@ -72,7 +72,7 @@ This document extends the RESTCONF protocol in order to support trace context pr
 Network automation and management systems commonly consist of multiple
 sub-systems and together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to follow, analyze and debug operations, such as configuration transactions, across multiple distributed systems.  An operation is uniquely identified by a trace-id and through a trace context, carries some metadata about the operation.  Propagating this "trace context" between systems enables forming a coherent view of the entire operation as carried out by all involved systems.
 
-The W3C has defined two HTTP headers (traceparent and tracestate) for context propagation that are useful for distributed systems like the ones defined in {{?RFC8309}}. The goal of this document is to adopt this W3C specification for the RESTCONF protocol. 
+The W3C has defined two HTTP headers (traceparent and tracestate) for context propagation that are useful for distributed systems like the ones defined in {{?RFC8309}}. The goal of this document is to adopt this W3C specification for the RESTCONF protocol.
 
 This document does not define new HTTP extensions but makes those defined in {{W3C-Trace-Context}} optional headers for the RESTCONF protocol.
 
@@ -131,13 +131,13 @@ And the expected error message:
              "error-type" : "protocol",
              "error-tag" : "operation-failed",
              "error-severity" : "error",
-             "error-message" : 
+             "error-message" :
              "OTLP traceparent attribute incorrectly formatted",
              "error-info": {
                "ietf-netconf-otlp-context:meta-name" : "traceparent",
-               "ietf-netconf-otlp-context:meta-value" : 
+               "ietf-netconf-otlp-context:meta-value" :
                "SomeBadFormatHere",
-               "ietf-netconf-otlp-context:error-type" : 
+               "ietf-netconf-otlp-context:error-type" :
                "ietf-netconf-otlp-context:bad-format"
              }
            }
@@ -161,7 +161,7 @@ This document has no IANA actions.
 
 # Acknowledgments
 
-We would like to acknowledge 
+We would like to acknowledge
 
 --- back
 
