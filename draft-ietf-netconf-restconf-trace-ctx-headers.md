@@ -171,7 +171,7 @@ TBD
 
 # Changes (to be deleted by RFC Editor)
 
-## From version 00 to draft-netconf-restconf-trace-ctx-headers-00
+## From version 00 to draft-ietf-netconf-restconf-trace-ctx-headers-00
 - Adopted by NETCONF WG
 - Moved repository to NETCONF WG
 - Changed build system to use martinthomson's excellent framework
