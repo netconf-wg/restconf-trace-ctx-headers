@@ -17,6 +17,7 @@
 /versioned/
 Gemfile.lock
 archive.json
+draft-ietf-netconf-restconf-trace-ctx-headers.xml
 draft-netconf-restconf-trace-ctx-headers.xml
 package-lock.json
 report.xml
