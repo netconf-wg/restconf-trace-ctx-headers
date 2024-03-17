@@ -1,11 +1,11 @@
 # RESTCONF Extension to support Trace Context Headers
 
-This is the working area for the individual Internet-Draft, "RESTCONF Extension to support Trace Context Headers".
+This is the working area for the IETF [NETCONF Working Group](https://datatracker.ietf.org/wg/netconf/documents/) Internet-Draft, "RESTCONF Extension to support Trace Context Headers".
 
-* [Editor's Copy](https://janlindblad.github.io/restconf-trace-ctx-headers/#go.draft-netconf-restconf-trace-ctx-headers.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-netconf-restconf-trace-ctx-headers)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-netconf-restconf-trace-ctx-headers)
-* [Compare Editor's Copy to Individual Draft](https://janlindblad.github.io/restconf-trace-ctx-headers/#go.draft-netconf-restconf-trace-ctx-headers.diff)
+* [Editor's Copy](https://janlindblad.github.io/restconf-trace-ctx-headers/#go.draft-ietf-netconf-restconf-trace-ctx-headers.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-netconf-restconf-trace-ctx-headers)
+* [Working Group Draft](https://datatracker.ietf.org/doc/html/draft-ietf-netconf-restconf-trace-ctx-headers)
+* [Compare Editor's Copy to Working Group Draft](https://janlindblad.github.io/restconf-trace-ctx-headers/#go.draft-ietf-netconf-restconf-trace-ctx-headers.diff)
 
 
 ## Contributing
