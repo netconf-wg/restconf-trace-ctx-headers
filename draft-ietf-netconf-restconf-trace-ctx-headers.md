@@ -3,7 +3,7 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to support Trace Context Headers
 abbrev: rc_trace
 category: std
-date: 2024-04-10
+date: 2024-06-18
 
 ipr: trust200902
 submissiontype: IETF
@@ -20,8 +20,8 @@ venue:
   type: Working Group
   mail: netconf@ietf.org
   arch: https://mailarchive.ietf.org/arch/browse/netmod/
-  github: TBD
-  latest: TBD
+  github: https://github.com/netconf-wg/restconf-trace-ctx-headers
+  latest: https://github.com/netconf-wg/restconf-trace-ctx-headers/blob/gh-pages/draft-ietf-netconf-restconf-trace-ctx-headers.txt
 
 stand_alone: yes
 smart_quotes: no
@@ -49,9 +49,11 @@ author:
 
 normative:
   RFC2119:
-  RFC8174:
-  RFC8525:
   RFC8040:
+  RFC8174:
+  RFC8341:
+  RFC8446:
+  RFC8525:
 
   I-D.draft-rogaglia-netconf-trace-ctx-extension-03:
 
@@ -153,7 +155,13 @@ This extension refers to the {{W3C-Trace-Context}} trace context capability. The
 
 # Security Considerations
 
-TODO Security
+There are no YANG modules specified in this document, even though the functionality described herein relates to the network management protocol RESTCONF [RFC8040].  This is because the only functionality described are additional HTTP headers, and those cannot be described using YANG.There are still some security considerations worth mentioning, however.
+
+The traceparent and tracestate headers make it easier to track the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge could also be of use to bad actors that are working to build a map of the managed network.
+
+The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement secure transport is TLS [RFC8446].
+
+The Network Configuration Access Control Model (NACM) [RFC8341] provides the means to restrict access for particular NETCONF or RESTCONF users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.
 
 # IANA Considerations
 
@@ -161,7 +169,7 @@ This document has no IANA actions.
 
 # Acknowledgments
 
-We would like to acknowledge
+The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Jean Quilbeuf and Benoît Claise has also been invaluable to this work.
 
 --- back
 
@@ -170,6 +178,12 @@ We would like to acknowledge
 TBD
 
 # Changes (to be deleted by RFC Editor)
+
+## From version 00 to -01
+- Added Security considerations
+- Added Acknowledgements
+- Added several Normative references
+- Added links to latest document on github
 
 ## From version 00 to draft-ietf-netconf-restconf-trace-ctx-headers-00
 - Adopted by NETCONF WG
@@ -181,6 +195,4 @@ TBD
 
 # TO DO List (to be deleted by RFC Editor)
 
-- Security Considerations
 - Example RESTCONF Calls
-- The W3C is working on a draft document to introduce the concept of "baggage" that we expect part of a future draft for NETCONF and RESTCONF
