@@ -1150,7 +1150,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-restconf-extensions" class="internal xref">RESTCONF Extensions</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-errors-handling" class="internal xref">Errors Handling</a></p>
+                <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-error-handling" class="internal xref">Error Handling</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
                 <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-trace-context-header-versio" class="internal xref">Trace Context header versionning</a></p>
@@ -1236,10 +1236,10 @@ sub-systems and together with the network devices they manage, they effectively 
       </h2>
 <p id="section-2-1">A RESTCONF server SHOULD support trace context traceparent header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
 <p id="section-2-2">A RESTCONF server SHOULD support trace context tracestate header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
-<div id="errors-handling">
+<div id="error-handling">
 <section id="section-2.1">
-        <h3 id="name-errors-handling">
-<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-errors-handling" class="section-name selfRef">Errors Handling</a>
+        <h3 id="name-error-handling">
+<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-error-handling" class="section-name selfRef">Error Handling</a>
         </h3>
 <p id="section-2.1-1">The RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.1-2">If the server rejects the RPC because of the trace context headers, the server MAY return an rpc-error with the following values:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
@@ -1402,7 +1402,7 @@ sub-systems and together with the network devices they manage, they effectively 
         <h3 id="name-unsuccessful-creation-new-d">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-unsuccessful-creation-new-d" class="section-name selfRef">Unsuccessful creation New Data Resources (from section B.2.1 in <span class="cite xref">[RFC8040]</span>)</a>
         </h3>
-<p id="appendix-A.2-1"><span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In Section -- TODO: Reference to Error handling section--, it is stated that servers MAY return an error. Let's assume that is our implementation.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1"><span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In Section <span><a href="#error-handling" class="internal xref">Error handling</a> (<a href="#error-handling" class="auto internal xref">Section 2.1</a>)</span>, it is stated that servers MAY return an error. Let's assume that is our implementation.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
 <p id="appendix-A.2-2">Example of a badly formated tracestate header using <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> example B.2.1, which by following :<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.2-3">
 <pre>
