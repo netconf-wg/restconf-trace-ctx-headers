@@ -90,7 +90,7 @@ A RESTCONF server SHOULD support trace context traceparent header as defined in 
 
 A RESTCONF server SHOULD support trace context tracestate header as defined in {{W3C-Trace-Context}}.
 
-## Errors handling
+## Errors Handling
 
 The RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in {{W3C-Trace-Context}}.
 
@@ -168,7 +168,7 @@ If the resource is created, the server might respond as follows:
 
 ## Unsuccessful creation New Data Resources (from section B.2.1 in {{RFC8040}})
 
-{{W3C-Trace-Context}} specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In Section {Errors handling}, it is stated that servers MAY return an error. Let's assume that is our implementation.
+{{W3C-Trace-Context}} specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In Section -- TODO: Reference to Error handling section--, it is stated that servers MAY return an error. Let's assume that is our implementation.
 
 Example of a badly formated tracestate header using {{RFC8040}} example B.2.1, which by following :
 
@@ -228,4 +228,6 @@ And the expected error message:
 - Moved repository to NETCONF WG
 - Changed build system to use martinthomson's excellent framework
 - Ran make fix-lint to remove white space at EOL etc.
-- Added this change note. No other content changes.
+- Added this change note. No other content changes
+
+## TODO:
