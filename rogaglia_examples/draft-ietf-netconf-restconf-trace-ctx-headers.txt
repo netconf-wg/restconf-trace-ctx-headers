@@ -74,7 +74,7 @@ Table of Contents
    1.  Introduction
      1.1.  Terminology
    2.  RESTCONF Extensions
-     2.1.  Errors handling
+     2.1.  Errors Handling
      2.2.  Trace Context header versionning
    3.  Security Considerations
    4.  IANA Considerations
@@ -91,6 +91,7 @@ Table of Contents
      B.1.  From version 00 to -01
      B.2.  From version 00 to
            draft-ietf-netconf-restconf-trace-ctx-headers-00
+     B.3.  TODO:
    Authors' Addresses
 
 1.  Introduction
@@ -136,7 +137,7 @@ Table of Contents
    A RESTCONF server SHOULD support trace context tracestate header as
    defined in [W3C-Trace-Context].
 
-2.1.  Errors handling
+2.1.  Errors Handling
 
    The RESTCONF server SHOULD follow the "Processing Model for Working
    with Trace Context" as specified in [W3C-Trace-Context].
@@ -303,9 +304,10 @@ A.2.  Unsuccessful creation New Data Resources (from section B.2.1 in
       [RFC8040])
 
    [W3C-Trace-Context] specifies that vendor MAY validate the tracestate
-   header and that invalid headers MAY be discarded.  In Section {Errors
-   handling}, it is stated that servers MAY return an error.  Let's
-   assume that is our implementation.
+   header and that invalid headers MAY be discarded.  In Section --
+   TODO: Reference to Error handling section--, it is stated that
+   servers MAY return an error.  Let's assume that is our
+   implementation.
 
    Example of a badly formated tracestate header using [RFC8040] example
    B.2.1, which by following :
@@ -379,7 +381,9 @@ B.2.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
 
    *  Ran make fix-lint to remove white space at EOL etc.
 
-   *  Added this change note.  No other content changes.
+   *  Added this change note.  No other content changes
+
+B.3.  TODO:
 
 Authors' Addresses
 
