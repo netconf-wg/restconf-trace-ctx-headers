@@ -5,10 +5,10 @@
 NETCONF                                                      R. Gagliano
 Internet-Draft                                             Cisco Systems
 Intended status: Standards Track                              K. Larsson
-Expires: 20 December 2024                            Deutsche Telekom AG
+Expires: 26 December 2024                            Deutsche Telekom AG
                                                              J. Lindblad
                                                            Cisco Systems
-                                                            18 June 2024
+                                                            24 June 2024
 
 
           RESTCONF Extension to support Trace Context Headers
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 December 2024.
+   This Internet-Draft will expire on 26 December 2024.
 
 Copyright Notice
 
@@ -74,7 +74,7 @@ Table of Contents
    1.  Introduction
      1.1.  Terminology
    2.  RESTCONF Extensions
-     2.1.  Errors handling
+     2.1.  Error Handling
      2.2.  Trace Context header versionning
    3.  Security Considerations
    4.  IANA Considerations
@@ -83,11 +83,15 @@ Table of Contents
      6.1.  Normative References
      6.2.  Informative References
    Appendix A.  Example RESTCONF calls
+     A.1.  Successful creation New Data Resources (from section B.2.1
+           in RFC8040)
+     A.2.  Unsuccessful creation New Data Resources (from section
+           B.2.1 in RFC8040)
    Appendix B.  Changes (to be deleted by RFC Editor)
      B.1.  From version 00 to -01
      B.2.  From version 00 to
            draft-ietf-netconf-restconf-trace-ctx-headers-00
-   Appendix C.  TO DO List (to be deleted by RFC Editor)
+     B.3.  TODO:
    Authors' Addresses
 
 1.  Introduction
@@ -133,14 +137,13 @@ Table of Contents
    A RESTCONF server SHOULD support trace context tracestate header as
    defined in [W3C-Trace-Context].
 
-2.1.  Errors handling
+2.1.  Error Handling
 
    The RESTCONF server SHOULD follow the "Processing Model for Working
    with Trace Context" as specified in [W3C-Trace-Context].
 
-   If the server rejects the RPC because of the trace context headers
-   values, the server MUST return an rpc-error with the following
-   values:
+   If the server rejects the RPC because of the trace context headers,
+   the server MAY return an rpc-error with the following values:
 
      error-tag:      operation-failed
      error-type:     protocol
@@ -152,50 +155,6 @@ Table of Contents
    Finally, the sx:structure defined in
    [I-D.draft-rogaglia-netconf-trace-ctx-extension-03] SHOULD be present
    in any error message from the server.
-
-   Example of a badly formated trace context extension using [RFC8040]
-   example B.2.1:
-
-     POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
-     Host: example.com
-     Content-Type: application/yang-data+json
-     traceparent: SomeBadFormatHere
-     tracestate: OrSomeBadFormatHere
-
-     {
-       "example-jukebox:artist" : [
-         {
-           "name" : "Foo Fighters"
-         }
-       ]
-     }
-
-   And the expected error message:
-
-    HTTP/1.1 400 Bad Request
-    Date: Tue, 20 Jun 2023 20:56:30 GMT
-    Server: example-server
-    Content-Type: application/yang-data+json
-
-    { "ietf-restconf:errors" : {
-        "error" : [
-          {
-            "error-type" : "protocol",
-            "error-tag" : "operation-failed",
-            "error-severity" : "error",
-            "error-message" :
-            "OTLP traceparent attribute incorrectly formatted",
-            "error-info": {
-              "ietf-netconf-otlp-context:meta-name" : "traceparent",
-              "ietf-netconf-otlp-context:meta-value" :
-              "SomeBadFormatHere",
-              "ietf-netconf-otlp-context:error-type" :
-              "ietf-netconf-otlp-context:bad-format"
-            }
-          }
-        ]
-      }
-    }
 
 2.2.  Trace Context header versionning
 
@@ -236,6 +195,9 @@ Table of Contents
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
    RESTCONF protocol operations and content.
+
+   All privacy and security consideration in [W3C-Trace-Context] apply
+   to this document.
 
 4.  IANA Considerations
 
@@ -302,7 +264,93 @@ Table of Contents
 
 Appendix A.  Example RESTCONF calls
 
-   TBD
+   All examples from [RFC8040] Appendix B could be recreated in this
+   seciton by adding the new header described in this document.  We
+   selected one example from that document as reference.
+
+A.1.  Successful creation New Data Resources (from section B.2.1 in
+      [RFC8040])
+
+   To create a new "artist" resource within the "library" resource, the
+   client might send the following request:
+
+    POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
+    Host: example.com
+    Content-Type: application/yang-data+json
+    traceparent: 00-405062f633be64ee006089dfca95a153-e021f9e263aad8e2-01
+    tracestate: vendorname1=opaqueValue1,vendorname2=opaqueValue2
+
+    {
+      "example-jukebox:artist" : [
+        {
+          "name" : "Foo Fighters"
+        }
+      ]
+    }
+
+   If the resource is created, the server might respond as follows:
+
+    HTTP/1.1 201 Created
+    Date: Thu, 26 Jan 2017 20:56:30 GMT
+    Server: example-server
+    Location: https://example.com/restconf/data/\
+        example-jukebox:jukebox/library/artist=Foo%20Fighters
+    Last-Modified: Thu, 26 Jan 2017 20:56:30 GMT
+    ETag: "b3830f23a4c"
+    traceparent: 00-405062f633be64ee006089dfca95a153-e021f9e263aad8e2-01
+    tracestate: vendorname1=opaqueValue1,vendorname2=opaqueValue2
+
+A.2.  Unsuccessful creation New Data Resources (from section B.2.1 in
+      [RFC8040])
+
+   [W3C-Trace-Context] specifies that vendor MAY validate the tracestate
+   header and that invalid headers MAY be discarded.  In Section Error
+   handling (Section 2.1), it is stated that servers MAY return an
+   error.  Let's assume that is our implementation.
+
+   Example of a badly formated tracestate header using [RFC8040] example
+   B.2.1, which by following :
+
+    POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
+    Host: example.com
+    Content-Type: application/yang-data+json
+    traceparent: 00-405062f633be64ee006089dfca95a153-e021f9e263aad8e2-01
+    tracestate: SomeBadFormatHere
+
+    {
+      "example-jukebox:artist" : [
+        {
+          "name" : "Foo Fighters"
+        }
+      ]
+    }
+
+   And the expected error message:
+
+    HTTP/1.1 400 Bad Request
+    Date: Tue, 20 Jun 2023 20:56:30 GMT
+    Server: example-server
+    Content-Type: application/yang-data+json
+
+    { "ietf-restconf:errors" : {
+        "error" : [
+          {
+            "error-type" : "protocol",
+            "error-tag" : "operation-failed",
+            "error-severity" : "error",
+            "error-message" :
+            "OTLP traceparent attribute incorrectly formatted",
+            "error-info": {
+              "ietf-netconf-otlp-context:meta-name" : "tracestate",
+              "ietf-netconf-otlp-context:meta-value" :
+              "SomeBadFormatHere",
+              "ietf-netconf-otlp-context:error-type" :
+              "ietf-netconf-otlp-context:bad-format"
+            }
+          }
+        ]
+      }
+    }
 
 Appendix B.  Changes (to be deleted by RFC Editor)
 
@@ -316,6 +364,11 @@ B.1.  From version 00 to -01
 
    *  Added links to latest document on github
 
+   *  Added RESTCONF example for success and error
+
+   *  Modified Error Handling to reflect better W3C alignment based on
+      implementation feedback
+
 B.2.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
       headers-00
 
@@ -327,11 +380,9 @@ B.2.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
 
    *  Ran make fix-lint to remove white space at EOL etc.
 
-   *  Added this change note.  No other content changes.
+   *  Added this change note.  No other content changes
 
-Appendix C.  TO DO List (to be deleted by RFC Editor)
-
-   *  Example RESTCONF Calls
+B.3.  TODO:
 
 Authors' Addresses
 
