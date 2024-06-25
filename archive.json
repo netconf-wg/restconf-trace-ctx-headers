@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-23T00:31:20.365688+00:00",
+  "timestamp": "2024-06-25T00:28:37.209444+00:00",
   "repo": "netconf-wg/restconf-trace-ctx-headers",
   "labels": [
     {
@@ -50,5 +50,42 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOLDJd485zX4xe",
+      "title": "Rogaglia examples",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/1",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Examples.",
+      "createdAt": "2024-06-24T14:05:44Z",
+      "updatedAt": "2024-06-24T14:07:06Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "79fe56bdb400489ee3e9db97feaa30e7d84d959b",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "rogaglia_examples",
+      "headRefOid": "cf94d56a5fe76e2839e97ce56ef560278966bffb",
+      "closedAt": "2024-06-24T14:07:06Z",
+      "mergedAt": "2024-06-24T14:07:06Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "ada24e3508de48202d36f998bedffe754a0a0c8e"
+      },
+      "comments": [
+        {
+          "author": "rgaglian",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Added examples and improved Error handling section to be better aligned with W3C.",
+          "createdAt": "2024-06-24T14:06:53Z",
+          "updatedAt": "2024-06-24T14:06:53Z"
+        }
+      ],
+      "reviews": []
+    }
+  ]
 }
