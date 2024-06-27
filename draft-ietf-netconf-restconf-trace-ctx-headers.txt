@@ -5,10 +5,10 @@
 NETCONF                                                      R. Gagliano
 Internet-Draft                                             Cisco Systems
 Intended status: Standards Track                              K. Larsson
-Expires: 26 December 2024                            Deutsche Telekom AG
+Expires: 29 December 2024                            Deutsche Telekom AG
                                                              J. Lindblad
                                                            Cisco Systems
-                                                            24 June 2024
+                                                            27 June 2024
 
 
           RESTCONF Extension to support Trace Context Headers
@@ -31,12 +31,11 @@ About This Document
 
    Discussion of this document takes place on the NETCONF Working Group
    mailing list (mailto:netconf@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/browse/netmod/.  Subscribe at
+   https://mailarchive.ietf.org/arch/browse/netconf/.  Subscribe at
    https://www.ietf.org/mailman/listinfo/netconf/.
 
    Source for this draft and an issue tracker can be found at
-   https://github.com/https://github.com/netconf-wg/restconf-trace-ctx-
-   headers.
+   https://github.com/netconf-wg/restconf-trace-ctx-headers.
 
 Status of This Memo
 
@@ -53,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 December 2024.
+   This Internet-Draft will expire on 29 December 2024.
 
 Copyright Notice
 
@@ -91,7 +90,6 @@ Table of Contents
      B.1.  From version 00 to -01
      B.2.  From version 00 to
            draft-ietf-netconf-restconf-trace-ctx-headers-00
-     B.3.  TODO:
    Authors' Addresses
 
 1.  Introduction
@@ -163,10 +161,10 @@ Table of Contents
    notion of versions.  It would be desirable for a RESTCONF client to
    be able to discover the one or multiple versions of these headers
    supported by a server.  We would like to achieve this goal avoiding
-   the deffinition of new RESTCONF capabilities for each headers'
+   the definition of new RESTCONF capabilities for each headers'
    version.
 
-   [I-D.draft-rogaglia-netconf-trace-ctx-extension-03] defines a pair
+   [I-D.draft-rogaglia-netconf-trace-ctx-extension-03] defines a pair of
    YANG modules that SHOULD be included in the YANG library per
    [RFC8525] of the RESTCONF server supporting the RESTCONF Trace
    Context extension that will refer to the headers' supported versions.
@@ -179,7 +177,7 @@ Table of Contents
    functionality described herein relates to the network management
    protocol RESTCONF [RFC8040].  This is because the only functionality
    described are additional HTTP headers, and those cannot be described
-   using YANG.There are still some security considerations worth
+   using YANG.  There are still some security considerations worth
    mentioning, however.
 
    The traceparent and tracestate headers make it easier to track the
@@ -188,6 +186,10 @@ Table of Contents
    also be of use to bad actors that are working to build a map of the
    managed network.
 
+   All advice mentioned in the [W3C-Trace-Context] under the Privacy
+   Considerations and Security Considerations also apply to this
+   document.
+
    The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement
    secure transport is TLS [RFC8446].
 
@@ -195,9 +197,6 @@ Table of Contents
    provides the means to restrict access for particular NETCONF or
    RESTCONF users to a preconfigured subset of all available NETCONF or
    RESTCONF protocol operations and content.
-
-   All privacy and security consideration in [W3C-Trace-Context] apply
-   to this document.
 
 4.  IANA Considerations
 
@@ -304,9 +303,9 @@ A.2.  Unsuccessful creation New Data Resources (from section B.2.1 in
       [RFC8040])
 
    [W3C-Trace-Context] specifies that vendor MAY validate the tracestate
-   header and that invalid headers MAY be discarded.  In Section Error
-   handling (Section 2.1), it is stated that servers MAY return an
-   error.  Let's assume that is our implementation.
+   header and that invalid headers MAY be discarded.  In the section
+   about Error handling (Section 2.1), it is stated that servers MAY
+   return an error.  Let's assume that is our implementation.
 
    Example of a badly formated tracestate header using [RFC8040] example
    B.2.1, which by following :
@@ -339,13 +338,13 @@ A.2.  Unsuccessful creation New Data Resources (from section B.2.1 in
             "error-tag" : "operation-failed",
             "error-severity" : "error",
             "error-message" :
-            "OTLP traceparent attribute incorrectly formatted",
+              "OTLP traceparent attribute incorrectly formatted",
             "error-info": {
               "ietf-netconf-otlp-context:meta-name" : "tracestate",
               "ietf-netconf-otlp-context:meta-value" :
-              "SomeBadFormatHere",
+                "SomeBadFormatHere",
               "ietf-netconf-otlp-context:error-type" :
-              "ietf-netconf-otlp-context:bad-format"
+                "ietf-netconf-otlp-context:bad-format"
             }
           }
         ]
@@ -381,8 +380,6 @@ B.2.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
    *  Ran make fix-lint to remove white space at EOL etc.
 
    *  Added this change note.  No other content changes
-
-B.3.  TODO:
 
 Authors' Addresses
 
