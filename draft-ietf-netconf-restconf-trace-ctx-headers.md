@@ -3,7 +3,7 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to support Trace Context Headers
 abbrev: rc_trace
 category: std
-date: 2024-06-24
+date: 2024-06-27
 
 ipr: trust200902
 submissiontype: IETF
@@ -19,8 +19,8 @@ venue:
   group: NETCONF
   type: Working Group
   mail: netconf@ietf.org
-  arch: https://mailarchive.ietf.org/arch/browse/netmod/
-  github: https://github.com/netconf-wg/restconf-trace-ctx-headers
+  arch: https://mailarchive.ietf.org/arch/browse/netconf/
+  github: netconf-wg/restconf-trace-ctx-headers
   latest: https://github.com/netconf-wg/restconf-trace-ctx-headers/blob/gh-pages/draft-ietf-netconf-restconf-trace-ctx-headers.txt
 
 stand_alone: yes
@@ -106,21 +106,21 @@ If the server rejects the RPC because of the trace context headers, the server M
 
 ## Trace Context header versionning
 
-This extension refers to the {{W3C-Trace-Context}} trace context capability. The W3C traceparent and trace-state headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server. We would like to achieve this goal avoiding the deffinition of new RESTCONF capabilities for each headers' version.
+This extension refers to the {{W3C-Trace-Context}} trace context capability. The W3C traceparent and trace-state headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server. We would like to achieve this goal avoiding the definition of new RESTCONF capabilities for each headers' version.
 
-{{I-D.draft-rogaglia-netconf-trace-ctx-extension-03}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
+{{I-D.draft-rogaglia-netconf-trace-ctx-extension-03}} defines a pair of YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
 
 # Security Considerations
 
-There are no YANG modules specified in this document, even though the functionality described herein relates to the network management protocol RESTCONF [RFC8040].  This is because the only functionality described are additional HTTP headers, and those cannot be described using YANG.There are still some security considerations worth mentioning, however.
+There are no YANG modules specified in this document, even though the functionality described herein relates to the network management protocol RESTCONF [RFC8040].  This is because the only functionality described are additional HTTP headers, and those cannot be described using YANG. There are still some security considerations worth mentioning, however.
 
 The traceparent and tracestate headers make it easier to track the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge could also be of use to bad actors that are working to build a map of the managed network.
+
+All advice mentioned in the {{W3C-Trace-Context}} under the Privacy Considerations and Security Considerations also apply to this document.
 
 The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement secure transport is TLS [RFC8446].
 
 The Network Configuration Access Control Model (NACM) [RFC8341] provides the means to restrict access for particular NETCONF or RESTCONF users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.
-
-All privacy and security consideration in {{W3C-Trace-Context}} apply to this document.
 
 # IANA Considerations
 
@@ -168,7 +168,7 @@ If the resource is created, the server might respond as follows:
 
 ## Unsuccessful creation New Data Resources (from section B.2.1 in {{RFC8040}})
 
-{{W3C-Trace-Context}} specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In Section [Error handling](#error-handling), it is stated that servers MAY return an error. Let's assume that is our implementation.
+{{W3C-Trace-Context}} specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In the section about [Error handling](#error-handling), it is stated that servers MAY return an error. Let's assume that is our implementation.
 
 Example of a badly formated tracestate header using {{RFC8040}} example B.2.1, which by following :
 
@@ -200,13 +200,13 @@ And the expected error message:
              "error-tag" : "operation-failed",
              "error-severity" : "error",
              "error-message" :
-             "OTLP traceparent attribute incorrectly formatted",
+               "OTLP traceparent attribute incorrectly formatted",
              "error-info": {
                "ietf-netconf-otlp-context:meta-name" : "tracestate",
                "ietf-netconf-otlp-context:meta-value" :
-               "SomeBadFormatHere",
+                 "SomeBadFormatHere",
                "ietf-netconf-otlp-context:error-type" :
-               "ietf-netconf-otlp-context:bad-format"
+                 "ietf-netconf-otlp-context:bad-format"
              }
            }
          ]
@@ -229,5 +229,3 @@ And the expected error message:
 - Changed build system to use martinthomson's excellent framework
 - Ran make fix-lint to remove white space at EOL etc.
 - Added this change note. No other content changes
-
-## TODO:
