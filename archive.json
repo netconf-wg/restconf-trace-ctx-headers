@@ -1,0 +1,91 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-06-27T00:28:56.188305+00:00",
+  "repo": "netconf-wg/restconf-trace-ctx-headers",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOLDJd485zX4xe",
+      "title": "Rogaglia examples",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/1",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Examples.",
+      "createdAt": "2024-06-24T14:05:44Z",
+      "updatedAt": "2024-06-24T14:07:06Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "79fe56bdb400489ee3e9db97feaa30e7d84d959b",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "rogaglia_examples",
+      "headRefOid": "cf94d56a5fe76e2839e97ce56ef560278966bffb",
+      "closedAt": "2024-06-24T14:07:06Z",
+      "mergedAt": "2024-06-24T14:07:06Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "ada24e3508de48202d36f998bedffe754a0a0c8e"
+      },
+      "comments": [
+        {
+          "author": "rgaglian",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Added examples and improved Error handling section to be better aligned with W3C.",
+          "createdAt": "2024-06-24T14:06:53Z",
+          "updatedAt": "2024-06-24T14:06:53Z"
+        }
+      ],
+      "reviews": []
+    }
+  ]
+}
