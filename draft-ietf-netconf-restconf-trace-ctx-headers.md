@@ -3,7 +3,7 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to support Trace Context Headers
 abbrev: rc_trace
 category: std
-date: 2024-07-08
+date: 2024-09-25
 
 ipr: trust200902
 submissiontype: IETF
@@ -65,20 +65,22 @@ normative:
 
 --- abstract
 
-This document extends the RESTCONF protocol in order to support trace context propagation as defined by the W3C.
+This document extends the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C.
 
 --- middle
 
 # Introduction
 
 Network automation and management systems commonly consist of multiple
-sub-systems and together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to follow, analyze and debug operations, such as configuration transactions, across multiple distributed systems.  An operation is uniquely identified by a trace-id and through a trace context, carries some metadata about the operation.  Propagating this "trace context" between systems enables forming a coherent view of the entire operation as carried out by all involved systems.
+sub-systems and together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to follow, analyze and debug operations, such as configuration transactions, across multiple distributed systems.
 
-The W3C has defined two HTTP headers (_traceparent_ and _tracestate_) for context propagation that are useful for distributed systems like the ones defined in {{?RFC8309}}. The goal of this document is to adopt this W3C specification for the RESTCONF protocol.
+The W3C has defined two HTTP headers (traceparent and tracestate) in {{W3C-Trace-Context}} for context propagation that are useful for distributed systems like the ones defined in {{?RFC8309}}.
 
-This document does not define new HTTP extensions but makes those defined in {{W3C-Trace-Context}} optional headers for the RESTCONF protocol.
+According to the W3C specification, each operation is uniquely identified by a "trace-id" field, and carries multiple metadata fields about the operation.  Propagating this Trace Context between systems enables forming a coherent view of the entire operation as carried out by all involved systems.
 
-In {{I-D.draft-ietf-netconf-trace-ctx-extension-01}}, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.
+The goal of this document is to adopt the W3C {{W3C-Trace-Context}} specification as optional headers for use with the RESTCONF protocol.
+
+In {{I-D.draft-ietf-netconf-trace-ctx-extension-01}}, the NETCONF protocol extension is defined and many of the YANG and XML objects defined in that document are re-used for RESTCONF.  Please refer to that document for additional context and example applications.
 
 ## Terminology
 
@@ -86,15 +88,15 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD","SHO
 
 # RESTCONF Extensions
 
-A RESTCONF server MUST support the trace context _traceparent_ header as defined in {{W3C-Trace-Context}}.
+A RESTCONF server MUST support the Trace Context traceparent header as defined in {{W3C-Trace-Context}}.
 
-A RESTCONF server SHOULD support the trace context _tracestate_ header as defined in {{W3C-Trace-Context}}.
+A RESTCONF server SHOULD support the Trace Context tracestate header as defined in {{W3C-Trace-Context}}.
 
 ## Error Handling
 
-The RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in {{W3C-Trace-Context}}.  Based on this processing model, it is NOT RECOMMENDED to reject an RPC because of the trace context header values.
+The RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in {{W3C-Trace-Context}}.  Based on this processing model, it is NOT RECOMMENDED to reject an RPC because of the Trace Context header values.
 
-If the server still decides to reject the RPC because of the trace context header values, the server MUST return a RESTCONF rpc-error with the following values:
+If the server still decides to reject the RPC because of the Trace Context header values, the server MUST return a RESTCONF rpc-error with the following values:
 
       error-tag:      operation-failed
       error-type:     protocol
@@ -102,19 +104,19 @@ If the server still decides to reject the RPC because of the trace context heade
 
  Additionally, the error-info tag MUST contain relevant details about the error in the form of an sx:structure otlp-trace-context-error-info defined in ietf-netconf-otlp-context.yang from {{I-D.draft-ietf-netconf-trace-ctx-extension-01}}.
 
-## Trace Context header versionning
+## Trace Context Header Versioning
 
-This extension refers to the {{W3C-Trace-Context}} trace context capability. The W3C _traceparent_ and _tracestate_ headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server. We would like to achieve this goal avoiding the definition of new RESTCONF capabilities for each headers' version.
+This extension refers to the {{W3C-Trace-Context}} Trace Context capability. The W3C traceparent and tracestate headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server.
 
-{{I-D.draft-ietf-netconf-trace-ctx-extension-01}} defines a pair of YANG modules that MUST be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
+To achieve this goal while avoiding the definition of new RESTCONF capabilities for each headers' version, {{I-D.draft-ietf-netconf-trace-ctx-extension-01}} defines a pair of YANG modules that MUST be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
 
 # Security Considerations
 
-There are two YANG modules specified in this document.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which trace context header versions the server supports using YANG Library {{RFC8525}}.
+The related document {{I-D.draft-ietf-netconf-trace-ctx-extension-01}} defines two YANG modules that are used when implementing the Trace Context concept, regardless of YANG-based protocol.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which Trace Context header versions the server supports using YANG Library {{RFC8525}}.
 
 Even though both YANG modules are empty, there are still some security considerations worth mentioning, however.  This is because the functionality described in this document is in the form of additional HTTP headers (which cannot be described using YANG) relating to the network management protocol RESTCONF [RFC8040].
 
-The _traceparent_ and _tracestate_ headers make it easier to track the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge could also be of use to bad actors that are working to build a map of the managed network.
+The traceparent and tracestate headers make it easier to track the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge could also be of use to bad actors that are working to build a map of the managed network.
 
 All advice mentioned in the {{W3C-Trace-Context}} under the Privacy Considerations and Security Considerations also apply to this document.
 
@@ -128,13 +130,13 @@ This document has no IANA actions.
 
 # Acknowledgments
 
-The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Jean Quilbeuf and Benoît Claise has also been invaluable to this work.
+The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Jean Quilbeuf and Benoît Claise has also been invaluable to this work. Many thanks to Tom Petch and Med Boucadair for their reviews.
 
 --- back
 
 # Example RESTCONF calls
 
-All examples from {{RFC8040}} Appendix B could be recreated in this seciton by adding the new header described in this document. We selected one example from that document as reference.
+All examples from {{RFC8040}} Appendix B could be recreated in this section by adding the new header described in this document. We selected one example from that document as reference.
 
 ## Successful creation New Data Resources (from section B.2.1 in {{RFC8040}})
 
@@ -168,9 +170,9 @@ If the resource is created, the server might respond as follows:
 
 ## Unsuccessful creation New Data Resources (from section B.2.1 in {{RFC8040}})
 
-{{W3C-Trace-Context}} specifies that vendor MAY validate the _tracestate_ header and that invalid headers MAY be discarded. In the section about [Error handling](#error-handling), it is stated that servers MAY return an error. Let's assume that is our implementation.
+{{W3C-Trace-Context}} specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In the section about [Error handling](#error-handling), it is stated that servers MAY return an error. Let's assume that is our implementation.
 
-Example of a badly formated _tracestate_ header using {{RFC8040}} example B.2.1, which by following :
+Example of a badly formated tracestate header using {{RFC8040}} example B.2.1, which by following :
 
       POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
       Host: example.com
@@ -214,6 +216,12 @@ And the expected error message:
      }
 
 # Changes (to be deleted by RFC Editor)
+
+## From version 01 to -02
+- Removed markdown formatting of tracestate and traceparent, as toolchain could not handle this properly
+- Rearranged text in introduction to include referenes in a more natural order
+- Removed several references to "we" and replaced with more neutral language
+- Clarified that the YANG modules used by this document is defined by the sibling document for NETCONF
 
 ## From version 00 to -01
 - Added Security considerations
