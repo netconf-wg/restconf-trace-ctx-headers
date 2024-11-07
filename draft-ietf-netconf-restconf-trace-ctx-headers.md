@@ -19,7 +19,7 @@ venue:
   group: NETCONF
   type: Working Group
   mail: netconf@ietf.org
-  arch: https://mailarchive.ietf.org/arch/browse/netmod/
+  arch: https://mailarchive.ietf.org/arch/browse/netconf/
   github: https://github.com/netconf-wg/restconf-trace-ctx-headers
   latest: https://github.com/netconf-wg/restconf-trace-ctx-headers/blob/gh-pages/draft-ietf-netconf-restconf-trace-ctx-headers.txt
 
@@ -148,7 +148,7 @@ This document has no IANA actions.
 
 # Acknowledgments
 
-The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Jean Quilbeuf and Benoît Claise has also been invaluable to this work.
+The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Med Boucadair, Jean Quilbeuf and Benoît Claise has also been invaluable to this work.
 
 --- back
 
@@ -241,6 +241,7 @@ And the expected error message:
 - Added WGLC comments
 - Changed namespaces and module name
 - Fix error in error response
+- Comments from Med Boucadair
 
 ## From version 00 to -01
 - Added Security considerations
