@@ -8,7 +8,7 @@ date: 2024-11-07
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 02
+v: 03
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -55,13 +55,22 @@ normative:
   RFC8446:
   RFC8525:
 
-  I-D. draft-ietf-netconf-trace-ctx-extension-02:
+  I-D.draft-ietf-netconf-trace-ctx-extension:
 
   W3C-Trace-Context:
     title: W3C Recommendation on Trace Context
     target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
     date: 2021-11-23
 
+  OpenTelemetry:
+    title: OpenTelemetry Cloud Native Computing Foundation project
+    target: https://opentelemetry.io
+    date: 2024-11-04
+
+  gNMI:
+    title: gNMI - gRPC Network Management Interface
+    target: https://github.com/openconfig/gnmi
+    date: 2024-11-04
 
 --- abstract
 
@@ -78,7 +87,7 @@ The W3C has defined two HTTP headers (traceparent and tracestate) for context pr
 
 This document does not define new HTTP extensions but makes those defined in {{W3C-Trace-Context}} optional headers for the RESTCONF protocol.
 
-In {{I-D.draft-ietf-netconf-trace-ctx-extension-02}}, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.
+In {{I-D.draft-ietf-netconf-trace-ctx-extension}}, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.
 
 ## Terminology
 
@@ -113,13 +122,13 @@ If the server rejects the RPC because of the trace context headers, the server M
 
  Additionally, the error-info tag SHOULD contain a relevant details about the error.
 
- Finally, the sx:structure defined in {{I-D.draft-ietf-netconf-trace-ctx-extension-02}} SHOULD be present in any error message from the server.
+ Finally, the sx:structure defined in {{I-D.draft-ietf-netconf-trace-ctx-extension}} SHOULD be present in any error message from the server.
 
 ## Trace Context header versionning
 
 This extension refers to the {{W3C-Trace-Context}} trace context capability. The W3C traceparent and trace-state headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server. We would like to achieve this goal avoiding the deffinition of new RESTCONF capabilities for each headers' version.
 
-{{I-D.draft-ietf-netconf-trace-ctx-extension-02}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
+{{I-D.draft-ietf-netconf-trace-ctx-extension}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
 
 # Security Considerations
 
@@ -206,20 +215,22 @@ And the expected error message:
 
      { "ietf-restconf:errors" : {
          "error" : [
-           {
-             "error-type" : "protocol",
-             "error-tag" : "operation-failed",
-             "error-severity" : "error",
-             "error-message" :
-             "Context traceparent header incorrectly formatted",
-             "error-info": {
-               "ietf-trace-context:meta-name" : "tracestate",
-               "ietf-trace-context:meta-value" :
-               "SomeBadFormatHere",
-               "ietf-trace-context:error-type" :
-               "ietf-trace-context:bad-format"
-             }
-           }
+          "trace-context-error-info": {
+            {
+              "error-type" : "protocol",
+              "error-tag" : "operation-failed",
+              "error-severity" : "error",
+              "error-message" :
+              "Context traceparent header incorrectly formatted",
+              "error-info": {
+                "ietf-trace-context:meta-name" : "tracestate",
+                "ietf-trace-context:meta-value" :
+                "SomeBadFormatHere",
+                "ietf-trace-context:error-type" :
+                "ietf-trace-context:bad-format"
+              }
+            }
+          }
          ]
        }
      }
@@ -229,6 +240,7 @@ And the expected error message:
 ## From version 01 to 02
 - Added WGLC comments
 - Changed namespaces and module name
+- Fix error in error response
 
 ## From version 00 to -01
 - Added Security considerations
