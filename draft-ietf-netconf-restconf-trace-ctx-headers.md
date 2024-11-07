@@ -8,7 +8,7 @@ date: 2024-11-07
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 2
+v: 02
 area: Operations and Management
 workgroup: NETCONF
 keyword:
