@@ -3,12 +3,12 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to support Trace Context Headers
 abbrev: rc_trace
 category: std
-date: 2024-06-24
+date: 2024-11-07
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 0
+v: 2
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -55,7 +55,7 @@ normative:
   RFC8446:
   RFC8525:
 
-  I-D.draft-rogaglia-netconf-trace-ctx-extension-03:
+  I-D. draft-ietf-netconf-trace-ctx-extension-02:
 
   W3C-Trace-Context:
     title: W3C Recommendation on Trace Context
@@ -78,11 +78,22 @@ The W3C has defined two HTTP headers (traceparent and tracestate) for context pr
 
 This document does not define new HTTP extensions but makes those defined in {{W3C-Trace-Context}} optional headers for the RESTCONF protocol.
 
-In {{I-D.draft-rogaglia-netconf-trace-ctx-extension-03}}, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.
+In {{I-D.draft-ietf-netconf-trace-ctx-extension-02}}, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.
 
 ## Terminology
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD","SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{RFC2119}} {{RFC8174}} when, and only when, they appear in all capitals, as shown here.
+
+Additionally, the document utilizes the following abbreviations:
+
+OTLP:
+: OpenTelemetry protocol as defined by {{OpenTelemetry}}
+
+M.E.L.T:
+: Metrics, Events, Logs and Traces
+
+gNMI:
+: gRPC Network Management Interface, as defined by {{gNMI}}
 
 # RESTCONF Extensions
 
@@ -102,13 +113,13 @@ If the server rejects the RPC because of the trace context headers, the server M
 
  Additionally, the error-info tag SHOULD contain a relevant details about the error.
 
- Finally, the sx:structure defined in {{I-D.draft-rogaglia-netconf-trace-ctx-extension-03}} SHOULD be present in any error message from the server.
+ Finally, the sx:structure defined in {{I-D.draft-ietf-netconf-trace-ctx-extension-02}} SHOULD be present in any error message from the server.
 
 ## Trace Context header versionning
 
 This extension refers to the {{W3C-Trace-Context}} trace context capability. The W3C traceparent and trace-state headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server. We would like to achieve this goal avoiding the deffinition of new RESTCONF capabilities for each headers' version.
 
-{{I-D.draft-rogaglia-netconf-trace-ctx-extension-03}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
+{{I-D.draft-ietf-netconf-trace-ctx-extension-02}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
 
 # Security Considerations
 
@@ -200,13 +211,13 @@ And the expected error message:
              "error-tag" : "operation-failed",
              "error-severity" : "error",
              "error-message" :
-             "OTLP traceparent attribute incorrectly formatted",
+             "Context traceparent header incorrectly formatted",
              "error-info": {
-               "ietf-netconf-otlp-context:meta-name" : "tracestate",
-               "ietf-netconf-otlp-context:meta-value" :
+               "ietf-trace-context:meta-name" : "tracestate",
+               "ietf-trace-context:meta-value" :
                "SomeBadFormatHere",
-               "ietf-netconf-otlp-context:error-type" :
-               "ietf-netconf-otlp-context:bad-format"
+               "ietf-trace-context:error-type" :
+               "ietf-trace-context:bad-format"
              }
            }
          ]
@@ -214,6 +225,10 @@ And the expected error message:
      }
 
 # Changes (to be deleted by RFC Editor)
+
+## From version 01 to 02
+- Added WGLC comments
+- Changed namespaces and module name
 
 ## From version 00 to -01
 - Added Security considerations
