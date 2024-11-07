@@ -3,12 +3,12 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: rc_trace
 category: std
-date: 2024-09-25
+date: 2024-11-07
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 0
+v: 03
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -20,7 +20,7 @@ venue:
   type: Working Group
   mail: netconf@ietf.org
   arch: https://mailarchive.ietf.org/arch/browse/netconf/
-  github: netconf-wg/restconf-trace-ctx-headers
+  github: https://github.com/netconf-wg/restconf-trace-ctx-headers
   latest: https://github.com/netconf-wg/restconf-trace-ctx-headers/blob/gh-pages/draft-ietf-netconf-restconf-trace-ctx-headers.txt
 
 stand_alone: yes
@@ -54,13 +54,22 @@ normative:
   RFC8446:
   RFC8525:
 
-  I-D.draft-ietf-netconf-trace-ctx-extension-01:
+  I-D.draft-ietf-netconf-trace-ctx-extension:
 
   W3C-Trace-Context:
     title: W3C Recommendation on Trace Context
     target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
     date: 2021-11-23
 
+  OpenTelemetry:
+    title: OpenTelemetry Cloud Native Computing Foundation project
+    target: https://opentelemetry.io
+    date: 2024-11-04
+
+  gNMI:
+    title: gNMI - gRPC Network Management Interface
+    target: https://github.com/openconfig/gnmi
+    date: 2024-11-04
 
 --- abstract
 
@@ -77,13 +86,22 @@ The W3C has defined two HTTP headers (traceparent and tracestate) in {{W3C-Trace
 
 According to the W3C specification, each operation is uniquely identified by a "trace-id" field, and carries multiple metadata fields about the operation.  Propagating this Trace Context between systems provides a coherent view of the entire operation as carried out by all involved systems.
 
-The goal of this document is to adopt the W3C {{W3C-Trace-Context}} specification as optional headers for use with the RESTCONF protocol {{RFC8040}}.
-
-{{I-D.draft-ietf-netconf-trace-ctx-extension-01}} defines the NETCONF protocol extension for Trace Context propagation. The present document leverages several of the YANG and XML objects defined in that document.  Readers should refer to {{I-D.draft-ietf-netconf-trace-ctx-extension-01}} for additional context and example applications.
+In {{I-D.draft-ietf-netconf-trace-ctx-extension}}, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.
 
 ## Terminology
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD","SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{RFC2119}} {{RFC8174}} when, and only when, they appear in all capitals, as shown here.
+
+Additionally, the document utilizes the following abbreviations:
+
+OTLP:
+: OpenTelemetry protocol as defined by {{OpenTelemetry}}
+
+M.E.L.T:
+: Metrics, Events, Logs and Traces
+
+gNMI:
+: gRPC Network Management Interface, as defined by {{gNMI}}
 
 # RESTCONF Extensions
 
@@ -101,13 +119,15 @@ If a server decides to reject an RPC because of the Trace Context header values,
       error-type:     protocol
       error-severity: error
 
- Additionally, the error-info tag MUST contain relevant details about the error in the form of an sx:structure otlp-trace-context-error-info defined in ietf-netconf-otlp-context.yang from {{I-D.draft-ietf-netconf-trace-ctx-extension-01}}.
+ Additionally, the error-info tag SHOULD contain a relevant details about the error.
+
+ Finally, the sx:structure defined in {{I-D.draft-ietf-netconf-trace-ctx-extension}} SHOULD be present in any error message from the server.
 
 ## Trace Context Header Versioning
 
 The RESTCONF protocol extension described in this document refers to the {{W3C-Trace-Context}} Trace Context capability. The W3C traceparent and tracestate headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server.
 
-To achieve this goal while avoiding the definition of new RESTCONF capabilities for each headers' version, {{I-D.draft-ietf-netconf-trace-ctx-extension-01}} defines a pair of YANG modules that MUST be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions.  Additional YANG modules representing new header versions could be added in future updates of this document.
+{{I-D.draft-ietf-netconf-trace-ctx-extension}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
 
 # Security Considerations
 
@@ -125,7 +145,7 @@ This document has no IANA actions.
 
 # Acknowledgments
 
-The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Jean Quilbeuf and Benoît Claise has also been invaluable to this work. Many thanks to Tom Petch and Med Boucadair for their reviews.
+The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Med Boucadair, Jean Quilbeuf and Benoît Claise has also been invaluable to this work.
 
 --- back
 
@@ -192,27 +212,33 @@ To which the server responds with an error message:
 
      { "ietf-restconf:errors" : {
          "error" : [
-           {
-             "error-type" : "protocol",
-             "error-tag" : "operation-failed",
-             "error-severity" : "error",
-             "error-message" :
-               "OTLP traceparent attribute incorrectly formatted",
-             "error-info": {
-               "ietf-netconf-otlp-context:meta-name" : "tracestate",
-               "ietf-netconf-otlp-context:meta-value" :
-                 "SomeBadFormatHere",
-               "ietf-netconf-otlp-context:error-type" :
-                 "ietf-netconf-otlp-context:bad-format"
-             }
-           }
+          "trace-context-error-info": {
+            {
+              "error-type" : "protocol",
+              "error-tag" : "operation-failed",
+              "error-severity" : "error",
+              "error-message" :
+              "Context traceparent header incorrectly formatted",
+              "error-info": {
+                "ietf-trace-context:meta-name" : "tracestate",
+                "ietf-trace-context:meta-value" :
+                "SomeBadFormatHere",
+                "ietf-trace-context:error-type" :
+                "ietf-trace-context:bad-format"
+              }
+            }
+          }
          ]
        }
      }
 
 # Changes (to be deleted by RFC Editor)
 
-## From version 01 to -02
+## From version 01 to 02
+- Added WGLC comments
+- Changed namespaces and module name
+- Fix error in error response
+- Comments from Med Boucadair
 - Removed markdown formatting of tracestate and traceparent, as toolchain could not handle this properly
 - Removed references to RFC8341 (NACM) as the passage in the security considerations no longer need it
 - Rearranged text in introduction to include referenes in a more natural order
