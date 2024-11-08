@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>RESTCONF Extension to support Trace Context Headers</title>
+<title>RESTCONF Extension to Support Trace Context Headers</title>
 <meta content="Roque Gagliano" name="author">
 <meta content="Kristian Larsson" name="author">
 <meta content="Jan Lindblad" name="author">
 <meta content="
-       This document extends the RESTCONF protocol in order to support trace context propagation as defined by the W3C. 
+       This document defines an extension to the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C. 
     " name="description">
 <meta content="xml2rfc 3.24.0" name="generator">
 <meta content="telemetry" name="keyword">
@@ -1121,10 +1121,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </dd>
 </dl>
 </div>
-<h1 id="title">RESTCONF Extension to support Trace Context Headers</h1>
+<h1 id="title">RESTCONF Extension to Support Trace Context Headers</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document extends the RESTCONF protocol in order to support trace context propagation as defined by the W3C.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines an extension to the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1205,7 +1205,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.2.2.1.1" class="keepWithNext"><a href="#section-2.1" class="auto internal xref">2.1</a>.  <a href="#name-error-handling" class="internal xref">Error Handling</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-trace-context-header-versio" class="internal xref">Trace Context header versionning</a></p>
+                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="auto internal xref">2.2</a>.  <a href="#name-trace-context-header-versio" class="internal xref">Trace Context Header Versioning</a></p>
 </li>
             </ul>
 </li>
@@ -1230,13 +1230,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-example-restconf-calls" class="internal xref">Example RESTCONF calls</a></p>
+            <p id="section-toc.1-1.7.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-example-restconf-calls" class="internal xref">Example RESTCONF Calls</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-successful-creation-new-dat" class="internal xref">Successful creation New Data Resources (from section B.2.1 in RFC8040)</a></p>
+                <p id="section-toc.1-1.7.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-successful-creation-of-new-" class="internal xref">Successful creation of New Data Resources (from Appendix B.2.1 of RFC8040)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-unsuccessful-creation-new-d" class="internal xref">Unsuccessful creation New Data Resources (from section B.2.1 in RFC8040)</a></p>
+                <p id="section-toc.1-1.7.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-unsuccessful-creation-of-ne" class="internal xref">Unsuccessful creation of New Data Resources (from Appendix B.2.1 of RFC8040)</a></p>
 </li>
             </ul>
 </li>
@@ -1251,9 +1251,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
                 <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-B.3" class="auto internal xref">B.3</a>.  <a href="#name-from-version-00-to-draft-ie" class="internal xref">From version 00 to draft-ietf-netconf-restconf-trace-ctx-headers-00</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
-                <p id="section-toc.1-1.8.2.4.1"><a href="#appendix-B.4" class="auto internal xref">B.4</a>.  <a href="#name-todo" class="internal xref">TODO:</a></p>
 </li>
             </ul>
 </li>
@@ -1270,9 +1267,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">Network automation and management systems commonly consist of multiple
-sub-systems and together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to follow, analyze and debug operations, such as configuration transactions, across multiple distributed systems.  An operation is uniquely identified by a trace-id and through a trace context, carries some metadata about the operation.  Propagating this "trace context" between systems enables forming a coherent view of the entire operation as carried out by all involved systems.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The W3C has defined two HTTP headers (traceparent and tracestate) for context propagation that are useful for distributed systems like the ones defined in <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span>. The goal of this document is to adopt this W3C specification for the RESTCONF protocol.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document does not define new HTTP extensions but makes those defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> optional headers for the RESTCONF protocol.<a href="#section-1-3" class="pilcrow">¶</a></p>
+sub-systems and, together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to track, analyze and debug operations such as configuration transactions, across multiple distributed systems.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The W3C has defined two HTTP headers (traceparent and tracestate) in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> for context propagation that are useful for distributed systems like the ones defined in section 4 of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">According to the W3C specification, each operation is uniquely identified by a "trace-id" field, and carries multiple metadata fields about the operation.  Propagating this Trace Context between systems provides a coherent view of the entire operation as carried out by all involved systems.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">In <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span>, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <div id="terminology">
 <section id="section-1.1">
@@ -1307,15 +1304,15 @@ sub-systems and together with the network devices they manage, they effectively 
       <h2 id="name-restconf-extensions">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-restconf-extensions" class="section-name selfRef">RESTCONF Extensions</a>
       </h2>
-<p id="section-2-1">A RESTCONF server SHOULD support trace context traceparent header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">A RESTCONF server SHOULD support trace context tracestate header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-1">A RESTCONF server that implements the Trace Context propagation mechanism defined in this document MUST support the Trace Context traceparent header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">A RESTCONF server SHOULD support the Trace Context tracestate header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <div id="error-handling">
 <section id="section-2.1">
         <h3 id="name-error-handling">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-error-handling" class="section-name selfRef">Error Handling</a>
         </h3>
-<p id="section-2.1-1">The RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1-2">If the server rejects the RPC because of the trace context headers, the server MAY return an rpc-error with the following values:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">A RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.  Based on this processing model, it is NOT RECOMMENDED to reject an RPC because of the Trace Context header values.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">If a server decides to reject an RPC because of the Trace Context header values, the server MUST return a RESTCONF rpc-error with the following values:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.1-3">
 <pre>
   error-tag:      operation-failed
@@ -1327,12 +1324,12 @@ sub-systems and together with the network devices they manage, they effectively 
 <p id="section-2.1-5">Finally, the sx:structure defined in <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span> SHOULD be present in any error message from the server.<a href="#section-2.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="trace-context-header-versionning">
+<div id="trace-context-header-versioning">
 <section id="section-2.2">
         <h3 id="name-trace-context-header-versio">
-<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-trace-context-header-versio" class="section-name selfRef">Trace Context header versionning</a>
+<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-trace-context-header-versio" class="section-name selfRef">Trace Context Header Versioning</a>
         </h3>
-<p id="section-2.2-1">This extension refers to the <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> trace context capability. The W3C traceparent and trace-state headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server. We would like to achieve this goal avoiding the deffinition of new RESTCONF capabilities for each headers' version.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
+<p id="section-2.2-1">The RESTCONF protocol extension described in this document refers to the <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> Trace Context capability. The W3C traceparent and tracestate headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
 <p id="section-2.2-2"><span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span> defines a pair YANG modules that SHOULD be included in the YANG library per <span>[<a href="#RFC8525" class="cite xref">RFC8525</a>]</span> of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1343,11 +1340,10 @@ sub-systems and together with the network devices they manage, they effectively 
       <h2 id="name-security-considerations">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-3-1">There are no YANG modules specified in this document, even though the functionality described herein relates to the network management protocol RESTCONF <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span>.  This is because the only functionality described are additional HTTP headers, and those cannot be described using YANG.There are still some security considerations worth mentioning, however.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The traceparent and tracestate headers make it easier to track the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge could also be of use to bad actors that are working to build a map of the managed network.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement secure transport is TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">The Network Configuration Access Control Model (NACM) <span>[<a href="#RFC8341" class="cite xref">RFC8341</a>]</span> provides the means to restrict access for particular NETCONF or RESTCONF users to a preconfigured subset of all available NETCONF or RESTCONF protocol operations and content.<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">All privacy and security consideration in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> apply to this document.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<p id="section-3-1">The related document <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span> defines two YANG modules that are used when implementing the Trace Context concept, regardless of YANG-based protocol.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which Trace Context header versions the server supports using YANG Library <span>[<a href="#RFC8525" class="cite xref">RFC8525</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge may be used by unauthorized entities to infer a map of a managed network.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">All advice mentioned in the <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> under the Privacy Considerations and Security Considerations also apply to this document.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-4">The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement secure transport is TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1401,10 +1397,6 @@ sub-systems and together with the network devices they manage, they effectively 
         <dd>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8341">[RFC8341]</dt>
-        <dd>
-<span class="refAuthor">Bierman, A.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"Network Configuration Access Control Model"</span>, <span class="seriesInfo">STD 91</span>, <span class="seriesInfo">RFC 8341</span>, <span class="seriesInfo">DOI 10.17487/RFC8341</span>, <time datetime="2018-03" class="refDate">March 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8341">https://www.rfc-editor.org/rfc/rfc8341</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC8446">[RFC8446]</dt>
         <dd>
 <span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8446">https://www.rfc-editor.org/rfc/rfc8446</a>&gt;</span>. </dd>
@@ -1438,15 +1430,15 @@ sub-systems and together with the network devices they manage, they effectively 
 <div id="example-restconf-calls">
 <section id="appendix-A">
       <h2 id="name-example-restconf-calls">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-example-restconf-calls" class="section-name selfRef">Example RESTCONF calls</a>
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-example-restconf-calls" class="section-name selfRef">Example RESTCONF Calls</a>
       </h2>
-<p id="appendix-A-1">All examples from <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> Appendix B could be recreated in this seciton by adding the new header described in this document. We selected one example from that document as reference.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<div id="successful-creation-new-data-resources-from-section-b21-in-rfc8040">
+<p id="appendix-A-1">All examples from Appendix B of <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> could be recreated in this section by adding the new header described in this document. We selected one example from that document as reference.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<div id="successful-creation-of-new-data-resources-from-appendix-b21-of-rfc8040">
 <section id="appendix-A.1">
-        <h3 id="name-successful-creation-new-dat">
-<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-successful-creation-new-dat" class="section-name selfRef">Successful creation New Data Resources (from section B.2.1 in <span class="cite xref">[RFC8040]</span>)</a>
+        <h3 id="name-successful-creation-of-new-">
+<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-successful-creation-of-new-" class="section-name selfRef">Successful creation of New Data Resources (from Appendix B.2.1 of <span class="cite xref">[RFC8040]</span>)</a>
         </h3>
-<p id="appendix-A.1-1">To create a new "artist" resource within the "library" resource, the client might send the following request:<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.1-1">To create a new "artist" resource within the "library" resource, a client might send the following request:<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.1-2">
 <pre>
   POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
@@ -1480,13 +1472,13 @@ sub-systems and together with the network devices they manage, they effectively 
 </div>
 </section>
 </div>
-<div id="unsuccessful-creation-new-data-resources-from-section-b21-in-rfc8040">
+<div id="unsuccessful-creation-of-new-data-resources-from-appendix-b21-of-rfc8040">
 <section id="appendix-A.2">
-        <h3 id="name-unsuccessful-creation-new-d">
-<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-unsuccessful-creation-new-d" class="section-name selfRef">Unsuccessful creation New Data Resources (from section B.2.1 in <span class="cite xref">[RFC8040]</span>)</a>
+        <h3 id="name-unsuccessful-creation-of-ne">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-unsuccessful-creation-of-ne" class="section-name selfRef">Unsuccessful creation of New Data Resources (from Appendix B.2.1 of <span class="cite xref">[RFC8040]</span>)</a>
         </h3>
-<p id="appendix-A.2-1"><span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> specifies that vendor MAY validate the tracestate header and that invalid headers MAY be discarded. In Section <span><a href="#error-handling" class="internal xref">Error handling</a> (<a href="#error-handling" class="auto internal xref">Section 2.1</a>)</span>, it is stated that servers MAY return an error. Let's assume that is our implementation.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-2">Example of a badly formated tracestate header using <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> example B.2.1, which by following :<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1"><span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> specifies that a vendor may validate the tracestate header and that invalid headers may be discarded. Section 2.1 on <span><a href="#error-handling" class="internal xref">Error handling</a> (<a href="#error-handling" class="auto internal xref">Section 2.1</a>)</span>, states that servers may return an error. Let's assume that an implementation follows that behavior.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-2">Example of a badly formated tracestate header using <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> example (Appendix B.2.1), in which a server receives the following:<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.2-3">
 <pre>
   POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
@@ -1504,11 +1496,11 @@ sub-systems and together with the network devices they manage, they effectively 
   }
 </pre><a href="#appendix-A.2-3" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.2-4">And the expected error message:<a href="#appendix-A.2-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-4">To which the server responds with an error message:<a href="#appendix-A.2-4" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.2-5">
 <pre>
  HTTP/1.1 400 Bad Request
- Date: Tue, 20 Jun 2023 20:56:30 GMT
+ Date: Thu, 20 Jun 2024 20:56:30 GMT
  Server: example-server
  Content-Type: application/yang-data+json
 
@@ -1562,6 +1554,27 @@ sub-systems and together with the network devices they manage, they effectively 
           <li class="normal" id="appendix-B.1-1.4">
             <p id="appendix-B.1-1.4.1">Comments from Med Boucadair<a href="#appendix-B.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
+          <li class="normal" id="appendix-B.1-1.5">
+            <p id="appendix-B.1-1.5.1">Removed markdown formatting of tracestate and traceparent, as toolchain could not handle this properly<a href="#appendix-B.1-1.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.6">
+            <p id="appendix-B.1-1.6.1">Removed references to RFC8341 (NACM) as the passage in the security considerations no longer need it<a href="#appendix-B.1-1.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.7">
+            <p id="appendix-B.1-1.7.1">Rearranged text in introduction to include referenes in a more natural order<a href="#appendix-B.1-1.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.8">
+            <p id="appendix-B.1-1.8.1">Removed several references to "we" and replaced with more neutral language<a href="#appendix-B.1-1.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.9">
+            <p id="appendix-B.1-1.9.1">Clarified that everything described as MUST requirements in this document only apply to RESTCONF implementations that implement this document. Other RESTCONF implementations do not need to care about this document, it's an optional extension<a href="#appendix-B.1-1.9.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.10">
+            <p id="appendix-B.1-1.10.1">Clarified that the YANG modules used by this document is defined by the sibling document for NETCONF<a href="#appendix-B.1-1.10.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.11">
+            <p id="appendix-B.1-1.11.1">Lots of updated wording based on review feedback<a href="#appendix-B.1-1.11.1" class="pilcrow">¶</a></p>
+</li>
         </ul>
 </section>
 </div>
@@ -1589,6 +1602,9 @@ sub-systems and together with the network devices they manage, they effectively 
           <li class="normal" id="appendix-B.2-1.6">
             <p id="appendix-B.2-1.6.1">Modified Error Handling to reflect better W3C alignment based on implementation feedback<a href="#appendix-B.2-1.6.1" class="pilcrow">¶</a></p>
 </li>
+          <li class="normal" id="appendix-B.2-1.7">
+            <p id="appendix-B.2-1.7.1">Firmed up error handling and YANG-library to MUST-requirements<a href="#appendix-B.2-1.7.1" class="pilcrow">¶</a></p>
+</li>
         </ul>
 </section>
 </div>
@@ -1614,13 +1630,6 @@ sub-systems and together with the network devices they manage, they effectively 
             <p id="appendix-B.3-1.5.1">Added this change note. No other content changes<a href="#appendix-B.3-1.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-</section>
-</div>
-<div id="todo">
-<section id="appendix-B.4">
-        <h3 id="name-todo">
-<a href="#appendix-B.4" class="section-number selfRef">B.4. </a><a href="#name-todo" class="section-name selfRef">TODO:</a>
-      </h3>
 </section>
 </div>
 </section>
