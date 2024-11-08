@@ -131,7 +131,7 @@ The RESTCONF protocol extension described in this document refers to the {{W3C-T
 
 # Security Considerations
 
-The related document {{I-D.draft-ietf-netconf-trace-ctx-extension-01}} defines two YANG modules that are used when implementing the Trace Context concept, regardless of YANG-based protocol.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which Trace Context header versions the server supports using YANG Library {{RFC8525}}.
+The related document {{I-D.draft-ietf-netconf-trace-ctx-extension}} defines two YANG modules that are used when implementing the Trace Context concept, regardless of YANG-based protocol.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which Trace Context header versions the server supports using YANG Library {{RFC8525}}.
 
 The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge may be used by unauthorized entities to infer a map of a managed network.
 
