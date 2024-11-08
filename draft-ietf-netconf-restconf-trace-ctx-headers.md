@@ -212,7 +212,6 @@ To which the server responds with an error message:
 
      { "ietf-restconf:errors" : {
          "error" : [
-          "trace-context-error-info": {
             {
               "error-type" : "protocol",
               "error-tag" : "operation-failed",
@@ -220,14 +219,15 @@ To which the server responds with an error message:
               "error-message" :
               "Context traceparent header incorrectly formatted",
               "error-info": {
-                "ietf-trace-context:meta-name" : "tracestate",
-                "ietf-trace-context:meta-value" :
-                "SomeBadFormatHere",
-                "ietf-trace-context:error-type" :
-                "ietf-trace-context:bad-format"
+                "ietf-trace-contex:trace-context-error-info": {
+                  "ietf-trace-context:meta-name" : "tracestate",
+                  "ietf-trace-context:meta-value" :
+                  "SomeBadFormatHere",
+                  "ietf-trace-context:error-type" :
+                  "ietf-trace-context:bad-format"
+                }
               }
-            }
-          }
+            } 
          ]
        }
      }
