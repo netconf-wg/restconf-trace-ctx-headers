@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-07T00:34:41.489163+00:00",
+  "timestamp": "2024-11-10T00:37:10.264904+00:00",
   "repo": "netconf-wg/restconf-trace-ctx-headers",
   "labels": [
     {
@@ -85,6 +85,88 @@
           "updatedAt": "2024-06-24T14:06:53Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOLDJd486BOQs0",
+      "title": "Wglc",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/2",
+      "state": "CLOSED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-07T17:58:07Z",
+      "updatedAt": "2024-11-07T17:58:18Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "891c1790c7041889302af9b479432bdff84866e9",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "8a2b131c463e64ca5d4f4521e7b57aea08c22932",
+      "closedAt": "2024-11-07T17:58:18Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOLDJd486BORZH",
+      "title": "Wglc",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/3",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-07T18:00:01Z",
+      "updatedAt": "2024-11-07T18:03:45Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "891c1790c7041889302af9b479432bdff84866e9",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "9708751d89c1ac8f75a6e1763719b96a99c33aa0",
+      "closedAt": "2024-11-07T18:03:44Z",
+      "mergedAt": "2024-11-07T18:03:44Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "1493fe8570404aa9b03d5a67cf49c45a6c576160"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOLDJd486BSn0_",
+      "title": "fix reference",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/4",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-11-08T09:06:05Z",
+      "updatedAt": "2024-11-08T09:11:03Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "1493fe8570404aa9b03d5a67cf49c45a6c576160",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "86f9e8c84fcaafc11e50492f4c8926186c9784bc",
+      "closedAt": "2024-11-08T09:11:03Z",
+      "mergedAt": "2024-11-08T09:11:03Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "77a0484cea7424af709b8d37683d9a09e34dc045"
+      },
+      "comments": [],
       "reviews": []
     }
   ]
