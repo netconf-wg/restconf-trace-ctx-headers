@@ -227,7 +227,7 @@ To which the server responds with an error message:
                   "ietf-trace-context:bad-format"
                 }
               }
-            } 
+            }
          ]
        }
      }
