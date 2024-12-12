@@ -5,10 +5,10 @@
 NETCONF                                                      R. Gagliano
 Internet-Draft                                             Cisco Systems
 Intended status: Standards Track                              K. Larsson
-Expires: 11 May 2025                                 Deutsche Telekom AG
+Expires: 15 June 2025                                Deutsche Telekom AG
                                                              J. Lindblad
                                                            Cisco Systems
-                                                         7 November 2024
+                                                        12 December 2024
 
 
           RESTCONF Extension to Support Trace Context Headers
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 May 2025.
+   This Internet-Draft will expire on 15 June 2025.
 
 Copyright Notice
 
@@ -88,9 +88,11 @@ Table of Contents
      A.2.  Unsuccessful creation of New Data Resources (from
            Appendix B.2.1 of RFC8040)
    Appendix B.  Changes (to be deleted by RFC Editor)
-     B.1.  From version 01 to 02
-     B.2.  From version 00 to -01
-     B.3.  From version 00 to
+     B.1.  From version 03 to 04
+     B.2.  From version 02 to 03
+     B.3.  From version 01 to 02
+     B.4.  From version 00 to -01
+     B.5.  From version 00 to
            draft-ietf-netconf-restconf-trace-ctx-headers-00
    Authors' Addresses
 
@@ -341,7 +343,6 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
 
     { "ietf-restconf:errors" : {
         "error" : [
-         "trace-context-error-info": {
            {
              "error-type" : "protocol",
              "error-tag" : "operation-failed",
@@ -349,21 +350,37 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
              "error-message" :
              "Context traceparent header incorrectly formatted",
              "error-info": {
-               "ietf-trace-context:meta-name" : "tracestate",
-               "ietf-trace-context:meta-value" :
-               "SomeBadFormatHere",
-               "ietf-trace-context:error-type" :
-               "ietf-trace-context:bad-format"
+               "ietf-trace-context:trace-context-error-info" : {
+                 "ietf-trace-context:meta-name" : "tracestate",
+                 "ietf-trace-context:meta-value" :
+                 "SomeBadFormatHere",
+                 "ietf-trace-context:error-type" :
+                 "ietf-trace-context:bad-format"
+               }
              }
            }
-         }
         ]
       }
     }
 
 Appendix B.  Changes (to be deleted by RFC Editor)
 
-B.1.  From version 01 to 02
+B.1.  From version 03 to 04
+
+   *  Abbreviation change
+
+   *  "ietf-trace-contex:trace-context-error-info" should have been a
+      container in example
+
+B.2.  From version 02 to 03
+
+   *  Added abbreviations to terminology
+
+   *  error messages are SHOULD to align with W3C handling.
+
+   *  Addapted example to YANG module changes in reference.
+
+B.3.  From version 01 to 02
 
    *  Added WGLC comments
 
@@ -395,7 +412,7 @@ B.1.  From version 01 to 02
 
    *  Lots of updated wording based on review feedback
 
-B.2.  From version 00 to -01
+B.4.  From version 00 to -01
 
    *  Added Security considerations
 
@@ -412,7 +429,7 @@ B.2.  From version 00 to -01
 
    *  Firmed up error handling and YANG-library to MUST-requirements
 
-B.3.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
+B.5.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
       headers-00
 
    *  Adopted by NETCONF WG
