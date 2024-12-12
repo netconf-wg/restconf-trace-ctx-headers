@@ -1,14 +1,14 @@
 ---
 docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
-abbrev: rc_trace
+abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2024-11-07
+date: 2024-12-12
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 03
+v: 04
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -212,7 +212,6 @@ To which the server responds with an error message:
 
      { "ietf-restconf:errors" : {
          "error" : [
-          "trace-context-error-info": {
             {
               "error-type" : "protocol",
               "error-tag" : "operation-failed",
@@ -220,19 +219,29 @@ To which the server responds with an error message:
               "error-message" :
               "Context traceparent header incorrectly formatted",
               "error-info": {
-                "ietf-trace-context:meta-name" : "tracestate",
-                "ietf-trace-context:meta-value" :
-                "SomeBadFormatHere",
-                "ietf-trace-context:error-type" :
-                "ietf-trace-context:bad-format"
+                "ietf-trace-context:trace-context-error-info" : {
+                  "ietf-trace-context:meta-name" : "tracestate",
+                  "ietf-trace-context:meta-value" :
+                  "SomeBadFormatHere",
+                  "ietf-trace-context:error-type" :
+                  "ietf-trace-context:bad-format"
+                }
               }
-            }
-          }
+            } 
          ]
        }
      }
 
 # Changes (to be deleted by RFC Editor)
+
+## From version 03 to 04
+- Abbreviation change
+- "ietf-trace-contex:trace-context-error-info" should have been a container in example
+
+## From version 02 to 03
+- Added abbreviations to terminology
+- error messages are SHOULD to align with W3C handling.
+- Addapted example to YANG module changes in reference.
 
 ## From version 01 to 02
 - Added WGLC comments
