@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-12T00:38:23.377766+00:00",
+  "timestamp": "2024-12-15T00:42:11.070298+00:00",
   "repo": "netconf-wg/restconf-trace-ctx-headers",
   "labels": [
     {
@@ -165,6 +165,62 @@
       "mergedBy": "rgaglian",
       "mergeCommit": {
         "oid": "77a0484cea7424af709b8d37683d9a09e34dc045"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOLDJd486FENlF",
+      "title": "Wglc",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/5",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-12T20:07:41Z",
+      "updatedAt": "2024-12-12T20:15:04Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "77a0484cea7424af709b8d37683d9a09e34dc045",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "7dd976116cc0d6b6217675153cb9cd9102c7b4a6",
+      "closedAt": "2024-12-12T20:15:04Z",
+      "mergedAt": "2024-12-12T20:15:04Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "cfe4143fb6de88eee743f19dce6f8110b2f73c06"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOLDJd486FEgsy",
+      "title": "Wglc",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/6",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "fix issue",
+      "createdAt": "2024-12-12T21:00:58Z",
+      "updatedAt": "2024-12-12T21:01:07Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "cfe4143fb6de88eee743f19dce6f8110b2f73c06",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "bf5c5664426fe9b9b6d90f1a7a90bfe27d6d1b61",
+      "closedAt": "2024-12-12T21:01:07Z",
+      "mergedAt": "2024-12-12T21:01:07Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "4660d6b6db774a40c56097a5c43259deca973774"
       },
       "comments": [],
       "reviews": []
