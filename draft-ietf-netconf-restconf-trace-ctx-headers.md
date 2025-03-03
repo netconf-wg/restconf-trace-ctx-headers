@@ -61,16 +61,6 @@ normative:
     target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
     date: 2021-11-23
 
-  OpenTelemetry:
-    title: OpenTelemetry Cloud Native Computing Foundation project
-    target: https://opentelemetry.io
-    date: 2024-11-04
-
-  gNMI:
-    title: gNMI - gRPC Network Management Interface
-    target: https://github.com/openconfig/gnmi
-    date: 2024-11-04
-
 --- abstract
 
 This document defines an extension to the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C.
