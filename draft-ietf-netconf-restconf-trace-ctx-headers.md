@@ -213,6 +213,9 @@ To which the server responds with an error message:
 
 # Changes (to be deleted by RFC Editor)
 
+## From version 04 to 05
+- Removed unused references and terminology
+
 ## From version 03 to 04
 - Abbreviation change
 - "ietf-trace-contex:trace-context-error-info" should have been a container in example
