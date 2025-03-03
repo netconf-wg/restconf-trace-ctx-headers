@@ -212,6 +212,7 @@ To which the server responds with an error message:
      }
 
 # Changes (to be deleted by RFC Editor)
+
 ## From version 05 to 06
 - More missing edits
 
