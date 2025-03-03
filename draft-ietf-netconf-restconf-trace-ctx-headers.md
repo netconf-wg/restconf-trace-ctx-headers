@@ -164,7 +164,7 @@ If the resource is created, the server might respond as follows:
 
 ## Unsuccessful creation of New Data Resources (from Appendix B.2.1 of {{RFC8040}})
 
-{{W3C-Trace-Context}} specifies that a vendor may validate the tracestate header and that invalid headers may be discarded.[Error handling](#error-handling), states that servers may return an error. Let's assume that an implementation follows that behavior.
+{{W3C-Trace-Context}} specifies that a vendor may validate the tracestate header and that invalid headers may be discarded. [Error handling](#error-handling), states that servers may return an error. Let's assume that an implementation follows that behavior.
 
 Example of a badly formated tracestate header using {{RFC8040}} example (Appendix B.2.1), in which a server receives the following:
 
