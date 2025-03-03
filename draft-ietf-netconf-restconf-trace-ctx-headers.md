@@ -8,7 +8,7 @@ date: 2024-03-03
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 05
+v: 06
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -106,7 +106,7 @@ If a server decides to reject an RPC because of the Trace Context header values,
 
 The RESTCONF protocol extension described in this document refers to the {{W3C-Trace-Context}} Trace Context capability. The W3C traceparent and tracestate headers include the notion of versions. It would be desirable for a RESTCONF client to be able to discover the one or multiple versions of these headers supported by a server.
 
-{{I-D.draft-ietf-netconf-trace-ctx-extension}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions. Future updates of this document could include additional YANG modules for new headers' versions.
+{{I-D.draft-ietf-netconf-trace-ctx-extension}} defines a pair YANG modules that SHOULD be included in the YANG library per {{RFC8525}} of the RESTCONF server supporting the RESTCONF Trace Context extension that will refer to the headers' supported versions.
 
 # Security Considerations
 
@@ -164,7 +164,7 @@ If the resource is created, the server might respond as follows:
 
 ## Unsuccessful creation of New Data Resources (from Appendix B.2.1 of {{RFC8040}})
 
-{{W3C-Trace-Context}} specifies that a vendor may validate the tracestate header and that invalid headers may be discarded. Section 2.1 on [Error handling](#error-handling), states that servers may return an error. Let's assume that an implementation follows that behavior.
+{{W3C-Trace-Context}} specifies that a vendor may validate the tracestate header and that invalid headers may be discarded. Error handling](#error-handling), states that servers may return an error. Let's assume that an implementation follows that behavior.
 
 Example of a badly formated tracestate header using {{RFC8040}} example (Appendix B.2.1), in which a server receives the following:
 
