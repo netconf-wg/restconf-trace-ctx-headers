@@ -3,12 +3,12 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2024-12-12
+date: 2024-03-03
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 04
+v: 05
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -61,16 +61,6 @@ normative:
     target: https://www.w3.org/TR/2021/REC-trace-context-1-20211123/
     date: 2021-11-23
 
-  OpenTelemetry:
-    title: OpenTelemetry Cloud Native Computing Foundation project
-    target: https://opentelemetry.io
-    date: 2024-11-04
-
-  gNMI:
-    title: gNMI - gRPC Network Management Interface
-    target: https://github.com/openconfig/gnmi
-    date: 2024-11-04
-
 --- abstract
 
 This document defines an extension to the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C.
@@ -91,17 +81,6 @@ In {{I-D.draft-ietf-netconf-trace-ctx-extension}}, the NETCONF protocol extensio
 ## Terminology
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD","SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{RFC2119}} {{RFC8174}} when, and only when, they appear in all capitals, as shown here.
-
-Additionally, the document utilizes the following abbreviations:
-
-OTLP:
-: OpenTelemetry protocol as defined by {{OpenTelemetry}}
-
-M.E.L.T:
-: Metrics, Events, Logs and Traces
-
-gNMI:
-: gRPC Network Management Interface, as defined by {{gNMI}}
 
 # RESTCONF Extensions
 
