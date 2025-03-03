@@ -5,10 +5,10 @@
 NETCONF                                                      R. Gagliano
 Internet-Draft                                             Cisco Systems
 Intended status: Standards Track                              K. Larsson
-Expires: 15 June 2025                                Deutsche Telekom AG
+Expires: 4 September 2024                            Deutsche Telekom AG
                                                              J. Lindblad
                                                            Cisco Systems
-                                                        12 December 2024
+                                                            3 March 2024
 
 
           RESTCONF Extension to Support Trace Context Headers
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2025.
+   This Internet-Draft will expire on 4 September 2024.
 
 Copyright Notice
 
@@ -127,14 +127,6 @@ Table of Contents
    and "OPTIONAL" in this document are to be interpreted as described in
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
-
-   Additionally, the document utilizes the following abbreviations:
-
-   OTLP:  OpenTelemetry protocol as defined by [OpenTelemetry]
-
-   M.E.L.T:  Metrics, Events, Logs and Traces
-
-   gNMI:  gRPC Network Management Interface, as defined by [gNMI]
 
 2.  RESTCONF Extensions
 
@@ -222,20 +214,13 @@ Table of Contents
 
 6.1.  Normative References
 
-   [gNMI]     "gNMI - gRPC Network Management Interface", 4 November
-              2024, <https://github.com/openconfig/gnmi>.
-
    [I-D.draft-ietf-netconf-trace-ctx-extension]
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
               Extension to support Trace Context propagation", Work in
               Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-02, 7 November 2024,
+              extension-03, 12 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-02>.
-
-   [OpenTelemetry]
-              "OpenTelemetry Cloud Native Computing Foundation project",
-              4 November 2024, <https://opentelemetry.io>.
+              trace-ctx-extension-03>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
