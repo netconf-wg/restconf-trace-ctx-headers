@@ -296,7 +296,7 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
       of [RFC8040])
 
    [W3C-Trace-Context] specifies that a vendor may validate the
-   tracestate header and that invalid headers may be discarded.Error
+   tracestate header and that invalid headers may be discarded.  Error
    handling (Section 2.1), states that servers may return an error.
    Let's assume that an implementation follows that behavior.
 
