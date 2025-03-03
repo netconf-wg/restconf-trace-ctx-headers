@@ -171,9 +171,7 @@ Table of Contents
    [I-D.draft-ietf-netconf-trace-ctx-extension] defines a pair YANG
    modules that SHOULD be included in the YANG library per [RFC8525] of
    the RESTCONF server supporting the RESTCONF Trace Context extension
-   that will refer to the headers' supported versions.  Future updates
-   of this document could include additional YANG modules for new
-   headers' versions.
+   that will refer to the headers' supported versions.
 
 3.  Security Considerations
 
@@ -219,9 +217,9 @@ Table of Contents
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
               Extension to support Trace Context propagation", Work in
               Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-03, 12 December 2024,
+              extension-04, 3 March 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-03>.
+              trace-ctx-extension-04>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -298,10 +296,9 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
       of [RFC8040])
 
    [W3C-Trace-Context] specifies that a vendor may validate the
-   tracestate header and that invalid headers may be discarded.
-   Section 2.1 on Error handling (Section 2.1), states that servers may
-   return an error.  Let's assume that an implementation follows that
-   behavior.
+   tracestate header and that invalid headers may be discarded.Error
+   handling (Section 2.1), states that servers may return an error.
+   Let's assume that an implementation follows that behavior.
 
    Example of a badly formated tracestate header using [RFC8040] example
    (Appendix B.2.1), in which a server receives the following:
@@ -350,6 +347,8 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
     }
 
 Appendix B.  Changes (to be deleted by RFC Editor)
+
+   ## From version 05 to 06 - More missing edits
 
 B.1.  From version 04 to 05
 
