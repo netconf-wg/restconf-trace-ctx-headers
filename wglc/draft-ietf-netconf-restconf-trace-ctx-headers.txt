@@ -88,12 +88,13 @@ Table of Contents
      A.2.  Unsuccessful creation of New Data Resources (from
            Appendix B.2.1 of RFC8040)
    Appendix B.  Changes (to be deleted by RFC Editor)
-     B.1.  From version 04 to 05
-     B.2.  From version 03 to 04
-     B.3.  From version 02 to 03
-     B.4.  From version 01 to 02
-     B.5.  From version 00 to -01
-     B.6.  From version 00 to
+     B.1.  From version 05 to 06
+     B.2.  From version 04 to 05
+     B.3.  From version 03 to 04
+     B.4.  From version 02 to 03
+     B.5.  From version 01 to 02
+     B.6.  From version 00 to -01
+     B.7.  From version 00 to
            draft-ietf-netconf-restconf-trace-ctx-headers-00
    Authors' Addresses
 
@@ -348,20 +349,22 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
 
 Appendix B.  Changes (to be deleted by RFC Editor)
 
-   ## From version 05 to 06 - More missing edits
+B.1.  From version 05 to 06
 
-B.1.  From version 04 to 05
+   *  More missing edits
+
+B.2.  From version 04 to 05
 
    *  Removed unused references and terminology
 
-B.2.  From version 03 to 04
+B.3.  From version 03 to 04
 
    *  Abbreviation change
 
    *  "ietf-trace-contex:trace-context-error-info" should have been a
       container in example
 
-B.3.  From version 02 to 03
+B.4.  From version 02 to 03
 
    *  Added abbreviations to terminology
 
@@ -369,7 +372,7 @@ B.3.  From version 02 to 03
 
    *  Addapted example to YANG module changes in reference.
 
-B.4.  From version 01 to 02
+B.5.  From version 01 to 02
 
    *  Added WGLC comments
 
@@ -401,7 +404,7 @@ B.4.  From version 01 to 02
 
    *  Lots of updated wording based on review feedback
 
-B.5.  From version 00 to -01
+B.6.  From version 00 to -01
 
    *  Added Security considerations
 
@@ -418,7 +421,7 @@ B.5.  From version 00 to -01
 
    *  Firmed up error handling and YANG-library to MUST-requirements
 
-B.6.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
+B.7.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
       headers-00
 
    *  Adopted by NETCONF WG
