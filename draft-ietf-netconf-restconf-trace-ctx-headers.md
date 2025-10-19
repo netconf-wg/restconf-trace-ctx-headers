@@ -3,12 +3,12 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2024-03-03
+date: 2025-10-19
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 06
+v: 07
 area: Operations and Management
 workgroup: NETCONF
 keyword:
