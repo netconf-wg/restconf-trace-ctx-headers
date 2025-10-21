@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-19T00:43:56.621055+00:00",
+  "timestamp": "2025-10-21T00:40:01.260454+00:00",
   "repo": "netconf-wg/restconf-trace-ctx-headers",
   "labels": [
     {
@@ -321,13 +321,13 @@
       "labels": [],
       "body": "missing space",
       "createdAt": "2025-03-03T10:02:48Z",
-      "updatedAt": "2025-03-03T10:02:48Z",
+      "updatedAt": "2025-10-19T07:18:56Z",
       "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
       "baseRefName": "main",
       "baseRefOid": "50d5aa3ac9889661a73bf555832dd57a09f173e3",
       "headRepository": "netconf-wg/restconf-trace-ctx-headers",
       "headRefName": "wglc",
-      "headRefOid": "4a4ceff0f1a3e87dafd0574f96c0957245b6d43e",
+      "headRefOid": "6a3c7d286d0943018a2faecced74c1dd9e2e5746",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
