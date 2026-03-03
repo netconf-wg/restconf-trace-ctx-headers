@@ -3,12 +3,12 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2025-10-19
+date: 2025-03-03
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 07
+v: 08
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -44,8 +44,8 @@ author:
 
  -
     fullname: Jan Lindblad
-    organization: Cisco Systems
-    email: jlindbla@cisco.com
+    organization: All For Eco
+    email: jan.lindblad+ietf@for.eco
 
 normative:
   RFC2119:
@@ -164,14 +164,14 @@ If the resource is created, the server might respond as follows:
 
 ## Unsuccessful creation of New Data Resources (from Appendix B.2.1 of {{RFC8040}})
 
-{{W3C-Trace-Context}} specifies that a vendor may validate the tracestate header and that invalid headers may be discarded. [Error handling](#error-handling), states that servers may return an error. Let's assume that an implementation follows that behavior.
+{{W3C-Trace-Context}} specifies that a vendor MAY validate the tracestate header and the processing rules SHOULD be followed.
 
-Example of a badly formated tracestate header using {{RFC8040}} example (Appendix B.2.1), in which a server receives the following:
+Example of a badly formated tracestate header using {{RFC8040}} example (Appendix B.2.1), in which a server receives a higher traceparent version 03:
 
       POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
       Host: example.com
       Content-Type: application/yang-data+json
-      traceparent: 00-405062f633be64ee006089dfca95a153-e021f9e263aad8e2-01
+      traceparent: 03-405062f633be64ee006089dfca95a153-e021f9e263aad8e2-01
       tracestate: SomeBadFormatHere
 
       {
@@ -182,36 +182,25 @@ Example of a badly formated tracestate header using {{RFC8040}} example (Appendi
         ]
       }
 
-To which the server responds with an error message:
+In this case, the server cannot parse the traceparent header and the response would be:
 
-     HTTP/1.1 400 Bad Request
-     Date: Thu, 20 Jun 2024 20:56:30 GMT
-     Server: example-server
-     Content-Type: application/yang-data+json
+      HTTP/1.1 201 Created
+      Date: Thu, 26 Jan 2017 20:56:30 GMT
+      Server: example-server
+      Location: https://example.com/restconf/data/\
+          example-jukebox:jukebox/library/artist=Foo%20Fighters
+      Last-Modified: Thu, 26 Jan 2017 20:56:30 GMT
+      ETag: "b3830f23a4c"
+      traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-00
 
-     { "ietf-restconf:errors" : {
-         "error" : [
-            {
-              "error-type" : "protocol",
-              "error-tag" : "operation-failed",
-              "error-severity" : "error",
-              "error-message" :
-              "Context traceparent header incorrectly formatted",
-              "error-info": {
-                "ietf-trace-context:trace-context-error-info" : {
-                  "ietf-trace-context:meta-name" : "tracestate",
-                  "ietf-trace-context:meta-value" :
-                  "SomeBadFormatHere",
-                  "ietf-trace-context:error-type" :
-                  "ietf-trace-context:bad-format"
-                }
-              }
-            }
-         ]
-       }
-     }
+Note that the API call was succesful but the traceparent header is new with its trace-flags set to 0 and the tracestate header was deleted.
 
 # Changes (to be deleted by RFC Editor)
+
+## From version 07 to 08
+- Improved Error-handling example to show the most common scenario based on W3C standard.
+- Uplifting dates
+
 
 ## From version 06 to 07
 - More missing edits, uplifting dates
