@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-03T00:58:58.023281+00:00",
+  "timestamp": "2026-03-05T00:57:55.493284+00:00",
   "repo": "netconf-wg/restconf-trace-ctx-headers",
   "labels": [
     {
@@ -314,25 +314,33 @@
       "id": "PR_kwDOLDJd486NIDnD",
       "title": "missing another space",
       "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/10",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "rgaglian",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "missing space",
       "createdAt": "2025-03-03T10:02:48Z",
-      "updatedAt": "2025-10-19T07:18:56Z",
+      "updatedAt": "2026-03-03T17:02:44Z",
       "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
       "baseRefName": "main",
       "baseRefOid": "50d5aa3ac9889661a73bf555832dd57a09f173e3",
       "headRepository": "netconf-wg/restconf-trace-ctx-headers",
       "headRefName": "wglc",
       "headRefOid": "6a3c7d286d0943018a2faecced74c1dd9e2e5746",
-      "closedAt": null,
+      "closedAt": "2026-03-03T17:02:44Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "rgaglian",
+          "authorAssociation": "COLLABORATOR",
+          "body": "not longer needed",
+          "createdAt": "2026-03-03T17:02:44Z",
+          "updatedAt": "2026-03-03T17:02:44Z"
+        }
+      ],
       "reviews": []
     }
   ]
