@@ -11,24 +11,24 @@
 <meta content="
        This document defines an extension to the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C. 
     " name="description">
-<meta content="xml2rfc 3.31.0" name="generator">
+<meta content="xml2rfc 3.32.0" name="generator">
 <meta content="telemetry" name="keyword">
 <meta content="distributed systems" name="keyword">
 <meta content="opentelemetry" name="keyword">
 <meta content="draft-ietf-netconf-restconf-trace-ctx-headers-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.31.0
+  xml2rfc 3.32.0
     Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.0.2
-    platformdirs 4.5.1
+    platformdirs 4.9.4
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.32.5
-    wcwidth 0.3.0
+    wcwidth 0.6.0
 -->
 <link href="draft-ietf-netconf-restconf-trace-ctx-headers.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1049,11 +1049,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">RESTCONF Trace Context Headers</td>
-<td class="right">March 2025</td>
+<td class="right">March 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Gagliano, et al.</td>
-<td class="center">Expires 4 September 2025</td>
+<td class="center">Expires 18 September 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-netconf-restconf-trace-ctx-headers-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-03" class="published">3 March 2025</time>
+<time datetime="2026-03-17" class="published">17 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-04">4 September 2025</time></dd>
+<dd class="expires"><time datetime="2026-09-18">18 September 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1129,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1138,7 +1138,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2025 IETF Trust and the persons identified as the
+            Copyright (c) 2026 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1254,7 +1254,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-1-1">Network automation and management systems commonly consist of multiple
 sub-systems and, together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to track, analyze and debug operations such as configuration transactions, across multiple distributed systems.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The W3C has defined two HTTP headers (traceparent and tracestate) in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> for context propagation that are useful for distributed systems like the ones defined in section 4 of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-2">The W3C has defined two HTTP headers (traceparent and tracestate) in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> for context propagation that are useful for distributed systems like the ones defined in section 4 of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span>. While the traceparent header is portable and mandatory, the tracestate header is optional and meant to transport vendor-specific data presented by a set of key/value pairs.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">According to the W3C specification, each operation is uniquely identified by a "trace-id" field, and carries multiple metadata fields about the operation.  Propagating this Trace Context between systems provides a coherent view of the entire operation as carried out by all involved systems.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">In <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span>, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <div id="terminology">
@@ -1273,13 +1273,14 @@ sub-systems and, together with the network devices they manage, they effectively
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-restconf-extensions" class="section-name selfRef">RESTCONF Extensions</a>
       </h2>
 <p id="section-2-1">A RESTCONF server that implements the Trace Context propagation mechanism defined in this document MUST support the Trace Context traceparent header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">A RESTCONF server SHOULD support the Trace Context tracestate header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-2">A RESTCONF server MAY support the Trace Context tracestate header as defined in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">When interacting with these headers, the RESTCONF server follow the specifications of section 2.3 in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>. A detailed processing model example is also provided in the document.<a href="#section-2-3" class="pilcrow">¶</a></p>
 <div id="error-handling">
 <section id="section-2.1">
         <h3 id="name-error-handling">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-error-handling" class="section-name selfRef">Error Handling</a>
         </h3>
-<p id="section-2.1-1">A RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span>.  Based on this processing model, it is NOT RECOMMENDED to reject an RPC because of the Trace Context header values.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">It is NOT RECOMMENDED to reject an RPC because of the Trace Context header values.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
 <p id="section-2.1-2">If a server decides to reject an RPC because of the Trace Context header values, the server MUST return a RESTCONF rpc-error with the following values:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.1-3">
 <pre>
@@ -1311,7 +1312,7 @@ sub-systems and, together with the network devices they manage, they effectively
 <p id="section-3-1">The related document <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span> defines two YANG modules that are used when implementing the Trace Context concept, regardless of YANG-based protocol.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which Trace Context header versions the server supports using YANG Library <span>[<a href="#RFC8525" class="cite xref">RFC8525</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge may be used by unauthorized entities to infer a map of a managed network.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">All advice mentioned in the <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> under the Privacy Considerations and Security Considerations also apply to this document.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement secure transport is TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-4">The RESTCONF protocol has to (1) use a secure transport layer (e.g., TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span> and QUIC [RFC9000]) and (2) has to use mutual authentication.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1490,6 +1491,12 @@ sub-systems and, together with the network devices they manage, they effectively
 </li>
           <li class="normal" id="appendix-B.1-1.2">
             <p id="appendix-B.1-1.2.1">Uplifting dates<a href="#appendix-B.1-1.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.3">
+            <p id="appendix-B.1-1.3.1">Serveral edits based on OpsDir comments<a href="#appendix-B.1-1.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="appendix-B.1-1.4">
+            <p id="appendix-B.1-1.4.1">Security considerations for Quic and Mutual Authentication<a href="#appendix-B.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>

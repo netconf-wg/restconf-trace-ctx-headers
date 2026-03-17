@@ -5,10 +5,10 @@
 NETCONF                                                      R. Gagliano
 Internet-Draft                                             Cisco Systems
 Intended status: Standards Track                              K. Larsson
-Expires: 4 September 2025                            Deutsche Telekom AG
+Expires: 18 September 2026                           Deutsche Telekom AG
                                                              J. Lindblad
                                                              All For Eco
-                                                            3 March 2025
+                                                           17 March 2026
 
 
           RESTCONF Extension to Support Trace Context Headers
@@ -53,11 +53,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2025.
+   This Internet-Draft will expire on 18 September 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -112,6 +112,9 @@ Table of Contents
    The W3C has defined two HTTP headers (traceparent and tracestate) in
    [W3C-Trace-Context] for context propagation that are useful for
    distributed systems like the ones defined in section 4 of [RFC8309].
+   While the traceparent header is portable and mandatory, the
+   tracestate header is optional and meant to transport vendor-specific
+   data presented by a set of key/value pairs.
 
    According to the W3C specification, each operation is uniquely
    identified by a "trace-id" field, and carries multiple metadata
@@ -138,15 +141,17 @@ Table of Contents
    mechanism defined in this document MUST support the Trace Context
    traceparent header as defined in [W3C-Trace-Context].
 
-   A RESTCONF server SHOULD support the Trace Context tracestate header
-   as defined in [W3C-Trace-Context].
+   A RESTCONF server MAY support the Trace Context tracestate header as
+   defined in [W3C-Trace-Context].
+
+   When interacting with these headers, the RESTCONF server follow the
+   specifications of section 2.3 in [W3C-Trace-Context].  A detailed
+   processing model example is also provided in the document.
 
 2.1.  Error Handling
 
-   A RESTCONF server SHOULD follow the "Processing Model for Working
-   with Trace Context" as specified in [W3C-Trace-Context].  Based on
-   this processing model, it is NOT RECOMMENDED to reject an RPC because
-   of the Trace Context header values.
+   It is NOT RECOMMENDED to reject an RPC because of the Trace Context
+   header values.
 
    If a server decides to reject an RPC because of the Trace Context
    header values, the server MUST return a RESTCONF rpc-error with the
@@ -196,8 +201,9 @@ Table of Contents
    Considerations and Security Considerations also apply to this
    document.
 
-   The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement
-   secure transport is TLS [RFC8446].
+   The RESTCONF protocol has to (1) use a secure transport layer (e.g.,
+   TLS [RFC8446] and QUIC [RFC9000]) and (2) has to use mutual
+   authentication.
 
 4.  IANA Considerations
 
@@ -343,6 +349,10 @@ B.1.  From version 07 to 08
       based on W3C standard.
 
    *  Uplifting dates
+
+   *  Serveral edits based on OpsDir comments
+
+   *  Security considerations for Quic and Mutual Authentication
 
 B.2.  From version 06 to 07
 
