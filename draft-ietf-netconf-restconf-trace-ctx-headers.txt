@@ -252,6 +252,11 @@ Table of Contents
               DOI 10.17487/RFC8525, March 2019,
               <https://www.rfc-editor.org/rfc/rfc8525>.
 
+   [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", RFC 9000,
+              DOI 10.17487/RFC9000, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9000>.
+
    [W3C-Trace-Context]
               "W3C Recommendation on Trace Context", 23 November 2021,
               <https://www.w3.org/TR/2021/REC-trace-context-

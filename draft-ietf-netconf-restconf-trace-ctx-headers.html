@@ -1312,7 +1312,7 @@ sub-systems and, together with the network devices they manage, they effectively
 <p id="section-3-1">The related document <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span> defines two YANG modules that are used when implementing the Trace Context concept, regardless of YANG-based protocol.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which Trace Context header versions the server supports using YANG Library <span>[<a href="#RFC8525" class="cite xref">RFC8525</a>]</span>.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge may be used by unauthorized entities to infer a map of a managed network.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">All advice mentioned in the <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> under the Privacy Considerations and Security Considerations also apply to this document.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">The RESTCONF protocol has to (1) use a secure transport layer (e.g., TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span> and QUIC [RFC9000]) and (2) has to use mutual authentication.<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-4">The RESTCONF protocol has to (1) use a secure transport layer (e.g., TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span> and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) has to use mutual authentication.<a href="#section-3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1365,6 +1365,10 @@ sub-systems and, together with the network devices they manage, they effectively
 <dt id="RFC8525">[RFC8525]</dt>
         <dd>
 <span class="refAuthor">Bierman, A.</span>, <span class="refAuthor">Bjorklund, M.</span>, <span class="refAuthor">Schoenwaelder, J.</span>, <span class="refAuthor">Watsen, K.</span>, and <span class="refAuthor">R. Wilton</span>, <span class="refTitle">"YANG Library"</span>, <span class="seriesInfo">RFC 8525</span>, <span class="seriesInfo">DOI 10.17487/RFC8525</span>, <time datetime="2019-03" class="refDate">March 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8525">https://www.rfc-editor.org/rfc/rfc8525</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9000">[RFC9000]</dt>
+        <dd>
+<span class="refAuthor">Iyengar, J., Ed.</span> and <span class="refAuthor">M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="seriesInfo">RFC 9000</span>, <span class="seriesInfo">DOI 10.17487/RFC9000</span>, <time datetime="2021-05" class="refDate">May 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9000">https://www.rfc-editor.org/rfc/rfc9000</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="W3C-Trace-Context">[W3C-Trace-Context]</dt>
       <dd>
