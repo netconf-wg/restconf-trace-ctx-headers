@@ -53,6 +53,7 @@ normative:
   RFC8174:
   RFC8446:
   RFC8525:
+  RFC9000:
 
   I-D.draft-ietf-netconf-trace-ctx-extension:
 
