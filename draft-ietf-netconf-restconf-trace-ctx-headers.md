@@ -3,7 +3,7 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2025-03-03
+date: 2025-03-17
 
 ipr: trust200902
 submissiontype: IETF
@@ -72,7 +72,7 @@ This document defines an extension to the RESTCONF protocol in order to support 
 Network automation and management systems commonly consist of multiple
 sub-systems and, together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to track, analyze and debug operations such as configuration transactions, across multiple distributed systems.
 
-The W3C has defined two HTTP headers (traceparent and tracestate) in {{W3C-Trace-Context}} for context propagation that are useful for distributed systems like the ones defined in section 4 of {{?RFC8309}}.
+The W3C has defined two HTTP headers (traceparent and tracestate) in {{W3C-Trace-Context}} for context propagation that are useful for distributed systems like the ones defined in section 4 of {{?RFC8309}}. While the traceparent header is portable and mandatory, the tracestate header is optional and meant to transport vendor-specific data presented by a set of key/value pairs.
 
 According to the W3C specification, each operation is uniquely identified by a "trace-id" field, and carries multiple metadata fields about the operation.  Propagating this Trace Context between systems provides a coherent view of the entire operation as carried out by all involved systems.
 
@@ -86,11 +86,13 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD","SHO
 
 A RESTCONF server that implements the Trace Context propagation mechanism defined in this document MUST support the Trace Context traceparent header as defined in {{W3C-Trace-Context}}.
 
-A RESTCONF server SHOULD support the Trace Context tracestate header as defined in {{W3C-Trace-Context}}.
+A RESTCONF server MAY support the Trace Context tracestate header as defined in {{W3C-Trace-Context}}.
+
+When interacting with these headers, the RESTCONF server follow the specifications of section 2.3 in {{W3C-Trace-Context}}. A detailed processing model example is also provided in the document.
 
 ## Error Handling
 
-A RESTCONF server SHOULD follow the "Processing Model for Working with Trace Context" as specified in {{W3C-Trace-Context}}.  Based on this processing model, it is NOT RECOMMENDED to reject an RPC because of the Trace Context header values.
+It is NOT RECOMMENDED to reject an RPC because of the Trace Context header values.
 
 If a server decides to reject an RPC because of the Trace Context header values, the server MUST return a RESTCONF rpc-error with the following values:
 
@@ -116,7 +118,7 @@ The traceparent and tracestate headers make it easier to track and correlate the
 
 All advice mentioned in the {{W3C-Trace-Context}} under the Privacy Considerations and Security Considerations also apply to this document.
 
-The lowest RESTCONF layer is HTTPS, and the mandatory-to-implement secure transport is TLS [RFC8446].
+The RESTCONF protocol has to (1) use a secure transport layer (e.g., TLS [RFC8446] and QUIC [RFC9000]) and (2) has to use mutual authentication.
 
 # IANA Considerations
 
@@ -200,6 +202,8 @@ Note that the API call was succesful but the traceparent header is new with its 
 ## From version 07 to 08
 - Improved Error-handling example to show the most common scenario based on W3C standard.
 - Uplifting dates
+- Serveral edits based on OpsDir comments
+- Security considerations for Quic and Mutual Authentication
 
 
 ## From version 06 to 07
