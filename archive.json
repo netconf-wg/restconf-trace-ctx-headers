@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-03-17T00:57:48.186218+00:00",
+  "timestamp": "2026-03-19T01:01:10.794237+00:00",
   "repo": "netconf-wg/restconf-trace-ctx-headers",
   "labels": [
     {
@@ -339,6 +339,78 @@
           "body": "not longer needed",
           "createdAt": "2026-03-03T17:02:44Z",
           "updatedAt": "2026-03-03T17:02:44Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOLDJd487LS0YT",
+      "title": "Wglc version 08",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/11",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-17T17:10:02Z",
+      "updatedAt": "2026-03-17T17:11:06Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "50d5aa3ac9889661a73bf555832dd57a09f173e3",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "aa767880916dd16c574285bfeefcda227fe5fb06",
+      "closedAt": "2026-03-17T17:10:56Z",
+      "mergedAt": "2026-03-17T17:10:56Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "a9171c513c04105859bf8682bac4c83011f4ad53"
+      },
+      "comments": [
+        {
+          "author": "rgaglian",
+          "authorAssociation": "COLLABORATOR",
+          "body": "closing",
+          "createdAt": "2026-03-17T17:11:06Z",
+          "updatedAt": "2026-03-17T17:11:06Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOLDJd487LS7JH",
+      "title": "Quic reference",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/12",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-03-17T17:16:08Z",
+      "updatedAt": "2026-03-17T17:16:30Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "a9171c513c04105859bf8682bac4c83011f4ad53",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "b199a6c3ce90874353ee9a8f1db38fb07ec75480",
+      "closedAt": "2026-03-17T17:16:17Z",
+      "mergedAt": "2026-03-17T17:16:17Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "2fc3c8ef62e21f20f490f408998009fa7f037ce0"
+      },
+      "comments": [
+        {
+          "author": "rgaglian",
+          "authorAssociation": "COLLABORATOR",
+          "body": "all good",
+          "createdAt": "2026-03-17T17:16:30Z",
+          "updatedAt": "2026-03-17T17:16:30Z"
         }
       ],
       "reviews": []
