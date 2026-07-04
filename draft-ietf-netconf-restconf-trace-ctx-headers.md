@@ -3,12 +3,12 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2026-03-17
+date: 2026-07-04
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 08
+v: 09
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -81,15 +81,15 @@ In {{I-D.draft-ietf-netconf-trace-ctx-extension}}, the NETCONF protocol extensio
 
 ## Terminology
 
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT","SHOULD","SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{RFC2119}} {{RFC8174}} when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 {{RFC2119}} {{RFC8174}} when, and only when, they appear in all capitals, as shown here.
 
 # RESTCONF Extensions
 
 A RESTCONF server that implements the Trace Context propagation mechanism defined in this document MUST support the Trace Context traceparent header as defined in {{W3C-Trace-Context}}.
 
-A RESTCONF server MAY support the Trace Context tracestate header as defined in {{W3C-Trace-Context}}.
+A RESTCONF server MAY support the Trace Context tracestate header as defined in {{W3C-Trace-Context}}. Note that while the W3C Trace Context specification mandates that tracing tools forwarding traces MUST propagate both traceparent and tracestate headers (Section 2.3 of {{W3C-Trace-Context}}), RESTCONF servers may act as trace endpoints rather than forwarding intermediaries. Since the tracestate header carries vendor-specific opaque data, its support is intentionally made optional to accommodate implementations that do not require vendor-specific trace context propagation.
 
-When interacting with these headers, the RESTCONF server follow the specifications of section 2.3 in {{W3C-Trace-Context}}. A detailed processing model example is also provided in the document.
+When interacting with these headers, the RESTCONF server follows the specifications of section 2.3 in {{W3C-Trace-Context}}, therefore a RESTCONF server MAY also participate in a trace by modifying the traceparent header and the relevant vendor-specific parts of the tracestate header, for example when acting as an intermediary that contributes its own span to the distributed trace.
 
 ## Error Handling
 
@@ -199,6 +199,13 @@ In this case, the server cannot parse the traceparent header and the response wo
 Note that the API call was succesful but the traceparent header is new with its trace-flags set to 0 and the tracestate header was deleted.
 
 # Changes (to be deleted by RFC Editor)
+
+## From version 08 to 09
+- Explain MAY vs W3C MUST for tracestate (OPSDir comment)
+- Mention "participating in a trace" (modifying headers) (OPSDir comment)
+- Fixed RFC 2119 boilerplate spacing to match exact BCP 14 text
+- Updated document date
+
 
 ## From version 07 to 08
 - Improved Error-handling example to show the most common scenario based on W3C standard.
