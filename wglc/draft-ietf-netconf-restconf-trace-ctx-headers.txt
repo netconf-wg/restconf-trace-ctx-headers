@@ -5,10 +5,10 @@
 NETCONF                                                      R. Gagliano
 Internet-Draft                                             Cisco Systems
 Intended status: Standards Track                              K. Larsson
-Expires: 18 September 2026                           Deutsche Telekom AG
+Expires: 5 January 2027                              Deutsche Telekom AG
                                                              J. Lindblad
                                                              All For Eco
-                                                           17 March 2026
+                                                             4 July 2026
 
 
           RESTCONF Extension to Support Trace Context Headers
@@ -53,7 +53,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 September 2026.
+   This Internet-Draft will expire on 5 January 2027.
 
 Copyright Notice
 
@@ -88,16 +88,17 @@ Table of Contents
      A.2.  Unsuccessful creation of New Data Resources (from
            Appendix B.2.1 of RFC8040)
    Appendix B.  Changes (to be deleted by RFC Editor)
-     B.1.  From version 07 to 08
-     B.2.  From version 06 to 07
-     B.3.  From version 05 to 06
-     B.4.  From version 04 to 05
-     B.5.  From version 03 to 04
-     B.6.  From version 02 to 03
-     B.7.  From version 01 to 02
-     B.8.  From version 00 to -01
-     B.9.  From version 00 to
-           draft-ietf-netconf-restconf-trace-ctx-headers-00
+     B.1.  From version 08 to 09
+     B.2.  From version 07 to 08
+     B.3.  From version 06 to 07
+     B.4.  From version 05 to 06
+     B.5.  From version 04 to 05
+     B.6.  From version 03 to 04
+     B.7.  From version 02 to 03
+     B.8.  From version 01 to 02
+     B.9.  From version 00 to -01
+     B.10. From version 00 to
+            draft-ietf-netconf-restconf-trace-ctx-headers-00
    Authors' Addresses
 
 1.  Introduction
@@ -129,10 +130,10 @@ Table of Contents
 
 1.1.  Terminology
 
-   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
-   NOT","SHOULD","SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY",
-   and "OPTIONAL" in this document are to be interpreted as described in
-   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in BCP
+   14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
 2.  RESTCONF Extensions
@@ -142,11 +143,21 @@ Table of Contents
    traceparent header as defined in [W3C-Trace-Context].
 
    A RESTCONF server MAY support the Trace Context tracestate header as
-   defined in [W3C-Trace-Context].
+   defined in [W3C-Trace-Context].  Note that while the W3C Trace
+   Context specification mandates that tracing tools forwarding traces
+   MUST propagate both traceparent and tracestate headers (Section 2.3
+   of [W3C-Trace-Context]), RESTCONF servers may act as trace endpoints
+   rather than forwarding intermediaries.  Since the tracestate header
+   carries vendor-specific opaque data, its support is intentionally
+   made optional to accommodate implementations that do not require
+   vendor-specific trace context propagation.
 
-   When interacting with these headers, the RESTCONF server follow the
-   specifications of section 2.3 in [W3C-Trace-Context].  A detailed
-   processing model example is also provided in the document.
+   When interacting with these headers, the RESTCONF server follows the
+   specifications of section 2.3 in [W3C-Trace-Context], therefore a
+   RESTCONF server MAY also participate in a trace by modifying the
+   traceparent header and the relevant vendor-specific parts of the
+   tracestate header, for example when acting as an intermediary that
+   contributes its own span to the distributed trace.
 
 2.1.  Error Handling
 
@@ -226,9 +237,9 @@ Table of Contents
               Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
               Extension to support Trace Context propagation", Work in
               Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-05, 19 October 2025,
+              extension-06, 17 March 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-05>.
+              trace-ctx-extension-06>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -348,7 +359,18 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
 
 Appendix B.  Changes (to be deleted by RFC Editor)
 
-B.1.  From version 07 to 08
+B.1.  From version 08 to 09
+
+   *  Explain MAY vs W3C MUST for tracestate (OPSDir comment)
+
+   *  Mention "participating in a trace" (modifying headers) (OPSDir
+      comment)
+
+   *  Fixed RFC 2119 boilerplate spacing to match exact BCP 14 text
+
+   *  Updated document date
+
+B.2.  From version 07 to 08
 
    *  Improved Error-handling example to show the most common scenario
       based on W3C standard.
@@ -359,26 +381,26 @@ B.1.  From version 07 to 08
 
    *  Security considerations for Quic and Mutual Authentication
 
-B.2.  From version 06 to 07
+B.3.  From version 06 to 07
 
    *  More missing edits, uplifting dates
 
-B.3.  From version 05 to 06
+B.4.  From version 05 to 06
 
    *  More missing edits
 
-B.4.  From version 04 to 05
+B.5.  From version 04 to 05
 
    *  Removed unused references and terminology
 
-B.5.  From version 03 to 04
+B.6.  From version 03 to 04
 
    *  Abbreviation change
 
    *  "ietf-trace-contex:trace-context-error-info" should have been a
       container in example
 
-B.6.  From version 02 to 03
+B.7.  From version 02 to 03
 
    *  Added abbreviations to terminology
 
@@ -386,7 +408,7 @@ B.6.  From version 02 to 03
 
    *  Addapted example to YANG module changes in reference.
 
-B.7.  From version 01 to 02
+B.8.  From version 01 to 02
 
    *  Added WGLC comments
 
@@ -418,7 +440,7 @@ B.7.  From version 01 to 02
 
    *  Lots of updated wording based on review feedback
 
-B.8.  From version 00 to -01
+B.9.  From version 00 to -01
 
    *  Added Security considerations
 
@@ -435,8 +457,8 @@ B.8.  From version 00 to -01
 
    *  Firmed up error handling and YANG-library to MUST-requirements
 
-B.9.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
-      headers-00
+B.10.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
+       headers-00
 
    *  Adopted by NETCONF WG
 
