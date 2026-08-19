@@ -3,12 +3,12 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2026-07-04
+date: 2026-08-19
 
 ipr: trust200902
 submissiontype: IETF
 consensus: true
-v: 09
+v: 10
 area: Operations and Management
 workgroup: NETCONF
 keyword:
@@ -113,9 +113,7 @@ The RESTCONF protocol extension described in this document refers to the {{W3C-T
 
 # Security Considerations
 
-The related document {{I-D.draft-ietf-netconf-trace-ctx-extension}} defines two YANG modules that are used when implementing the Trace Context concept, regardless of YANG-based protocol.  These modules are completely empty, and therefore have very limited security considerations. Their purpose is only to indicate which Trace Context header versions the server supports using YANG Library {{RFC8525}}.
-
-The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effect on other systems.  This is indeed the whole point with these headers.  This knowledge may be used by unauthorized entities to infer a map of a managed network.
+The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effect on other systems. This knowledge may be used by unauthorized entities to infer a map of a managed network.
 
 All advice mentioned in the {{W3C-Trace-Context}} under the Privacy Considerations and Security Considerations also apply to this document.
 
@@ -199,6 +197,9 @@ In this case, the server cannot parse the traceparent header and the response wo
 Note that the API call was succesful but the traceparent header is new with its trace-flags set to 0 and the tracestate header was deleted.
 
 # Changes (to be deleted by RFC Editor)
+
+## From version 09 to 10
+- Updated security considerations based on Sheppard review.
 
 ## From version 08 to 09
 - Explain MAY vs W3C MUST for tracestate (OPSDir comment)
