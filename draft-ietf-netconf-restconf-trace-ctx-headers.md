@@ -3,7 +3,7 @@ docname: draft-ietf-netconf-restconf-trace-ctx-headers-latest
 title:  RESTCONF Extension to Support Trace Context Headers
 abbrev: RESTCONF Trace Context Headers
 category: std
-date: 2026-08-19
+date: 2026-08-27
 
 ipr: trust200902
 submissiontype: IETF
@@ -36,6 +36,11 @@ author:
     city: Rolle
     country: Switzerland
     email: rogaglia@cisco.com
+
+ -
+    fullname: Christian Rennerskog
+    organization: Cisco Systems
+    email: crenners@cisco.com
 
  -
     fullname: Kristian Larsson
@@ -125,7 +130,7 @@ This document has no IANA actions.
 
 # Acknowledgments
 
-The authors would like to acknowledge the valuable implementation feedback from Christian Rennerskog and Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Med Boucadair, Jean Quilbeuf and Benoît Claise has also been invaluable to this work.
+The authors would like to acknowledge the valuable implementation feedback from Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Med Boucadair, Jean Quilbeuf and Benoît Claise has also been invaluable to this work.
 
 --- back
 
@@ -200,6 +205,7 @@ Note that the API call was succesful but the traceparent header is new with its 
 
 ## From version 09 to 10
 - Updated security considerations based on Sheppard review.
+- Added  Christian Rennerskog as co-author
 
 ## From version 08 to 09
 - Explain MAY vs W3C MUST for tracestate (OPSDir comment)
