@@ -3,12 +3,13 @@
 
 
 NETCONF                                                      R. Gagliano
-Internet-Draft                                             Cisco Systems
-Intended status: Standards Track                              K. Larsson
-Expires: 20 February 2027                            Deutsche Telekom AG
+Internet-Draft                                             C. Rennerskog
+Intended status: Standards Track                           Cisco Systems
+Expires: 28 February 2027                                     K. Larsson
+                                                     Deutsche Telekom AG
                                                              J. Lindblad
                                                              All For Eco
-                                                          19 August 2026
+                                                          27 August 2026
 
 
           RESTCONF Extension to Support Trace Context Headers
@@ -53,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 February 2027.
+   This Internet-Draft will expire on 28 February 2027.
 
 Copyright Notice
 
@@ -215,23 +216,23 @@ Table of Contents
 5.  Acknowledgments
 
    The authors would like to acknowledge the valuable implementation
-   feedback from Christian Rennerskog and Per Andersson.  Many thanks to
-   Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin
-   Vrolijk for their help with the demos regarding integrations.  The
-   help and support from Med Boucadair, Jean Quilbeuf and Benoît Claise
-   has also been invaluable to this work.
+   feedback from Per Andersson.  Many thanks to Raul Rivas Felix,
+   Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help
+   with the demos regarding integrations.  The help and support from Med
+   Boucadair, Jean Quilbeuf and Benoît Claise has also been invaluable
+   to this work.
 
 6.  References
 
 6.1.  Normative References
 
    [I-D.draft-ietf-netconf-trace-ctx-extension]
-              Gagliano, R., Larsson, K., and J. Lindblad, "NETCONF
-              Extension to support Trace Context propagation", Work in
-              Progress, Internet-Draft, draft-ietf-netconf-trace-ctx-
-              extension-07, 4 July 2026,
+              Gagliano, R., Rennerskog, C., Larsson, K., and J.
+              Lindblad, "NETCONF Extension to support Trace Context
+              propagation", Work in Progress, Internet-Draft, draft-
+              ietf-netconf-trace-ctx-extension-08, 27 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-netconf-
-              trace-ctx-extension-07>.
+              trace-ctx-extension-08>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -355,6 +356,8 @@ B.1.  From version 09 to 10
 
    *  Updated security considerations based on Sheppard review.
 
+   *  Added Christian Rennerskog as co-author
+
 B.2.  From version 08 to 09
 
    *  Explain MAY vs W3C MUST for tracestate (OPSDir comment)
@@ -474,6 +477,11 @@ Authors' Addresses
    CH-1180 Rolle
    Switzerland
    Email: rogaglia@cisco.com
+
+
+   Christian Rennerskog
+   Cisco Systems
+   Email: crenners@cisco.com
 
 
    Kristian Larsson
