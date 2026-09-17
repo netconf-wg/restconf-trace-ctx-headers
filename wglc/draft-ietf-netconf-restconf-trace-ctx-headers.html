@@ -10,7 +10,7 @@
 <meta content="Kristian Larsson" name="author">
 <meta content="Jan Lindblad" name="author">
 <meta content="
-       This document defines an extension to the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C. 
+       This document defines an extension to the RESTCONF protocol to support Trace Context propagation as defined by the W3C. 
     " name="description">
 <meta content="xml2rfc 3.34.0" name="generator">
 <meta content="telemetry" name="keyword">
@@ -26,11 +26,11 @@
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.3
+    platformdirs 4.11.7
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.2
+    wcwidth 0.8.3
 -->
 <link href="draft-ietf-netconf-restconf-trace-ctx-headers.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1046,11 +1046,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">RESTCONF Trace Context Headers</td>
-<td class="right">August 2026</td>
+<td class="right">September 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Gagliano, et al.</td>
-<td class="center">Expires 28 February 2027</td>
+<td class="center">Expires 21 March 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg {
 <dd class="internet-draft">draft-ietf-netconf-restconf-trace-ctx-headers-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-08-27" class="published">27 August 2026</time>
+<time datetime="2026-09-17" class="published">17 September 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-02-28">28 February 2027</time></dd>
+<dd class="expires"><time datetime="2027-03-21">21 March 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1093,7 +1093,7 @@ svg {
 <h1 id="title">RESTCONF Extension to Support Trace Context Headers</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines an extension to the RESTCONF protocol in order to support Trace Context propagation as defined by the W3C.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines an extension to the RESTCONF protocol to support Trace Context propagation as defined by the W3C.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1130,7 +1130,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 28 February 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 21 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1259,11 +1259,10 @@ svg {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">Network automation and management systems commonly consist of multiple
-sub-systems and, together with the network devices they manage, they effectively form a distributed system.  Distributed tracing is a methodology implemented by tracing tools to track, analyze and debug operations such as configuration transactions, across multiple distributed systems.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">The W3C has defined two HTTP headers (traceparent and tracestate) in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> for context propagation that are useful for distributed systems like the ones defined in section 4 of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span>. While the traceparent header is portable and mandatory, the tracestate header is optional and meant to transport vendor-specific data presented by a set of key/value pairs.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">According to the W3C specification, each operation is uniquely identified by a "trace-id" field, and carries multiple metadata fields about the operation.  Propagating this Trace Context between systems provides a coherent view of the entire operation as carried out by all involved systems.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">In <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span>, the NETCONF protocol extension is defined and we will re-use several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-1">Network automation and management systems commonly consist of multiple subsystems and, together with the network devices they manage, effectively form a distributed system. Distributed tracing is a methodology implemented by tracing tools to track, analyze, and debug operations such as configuration transactions across multiple distributed systems.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">The W3C has defined two HTTP headers, traceparent and tracestate, in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> for context propagation. These headers are useful for distributed systems such as those described in Section 4 of <span>[<a href="#RFC8309" class="cite xref">RFC8309</a>]</span>. While the traceparent header is portable and mandatory, the tracestate header is optional and is used to carry vendor-specific data in a set of key/value pairs.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">According to the W3C specification, each operation is uniquely identified by a "trace-id" field and carries multiple metadata fields about the operation. Propagating this Trace Context between systems provides a coherent view of the entire operation as carried out by all involved systems.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">In <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span>, the NETCONF protocol extension is defined, and we reuse several of the YANG and XML objects defined in that document for RESTCONF. Please refer to that document for additional context and example applications.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <div id="terminology">
 <section id="section-1.1">
         <h3 id="name-terminology">
@@ -1287,8 +1286,8 @@ sub-systems and, together with the network devices they manage, they effectively
         <h3 id="name-error-handling">
 <a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-error-handling" class="section-name selfRef">Error Handling</a>
         </h3>
-<p id="section-2.1-1">It is NOT RECOMMENDED to reject an RPC because of the Trace Context header values.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1-2">If a server decides to reject an RPC because of the Trace Context header values, the server MUST return a RESTCONF rpc-error with the following values:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
+<p id="section-2.1-1">It is NOT RECOMMENDED to reject an RPC because of Trace Context header values.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
+<p id="section-2.1-2">If a server decides to reject an RPC because of Trace Context header values, the server MUST return a RESTCONF rpc-error with the following values:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="section-2.1-3">
 <pre>
   error-tag:      operation-failed
@@ -1296,7 +1295,7 @@ sub-systems and, together with the network devices they manage, they effectively
   error-severity: error
 </pre><a href="#section-2.1-3" class="pilcrow">¶</a>
 </div>
-<p id="section-2.1-4">Additionally, the error-info tag SHOULD contain a relevant details about the error.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
+<p id="section-2.1-4">Additionally, the error-info tag SHOULD contain relevant details about the error.<a href="#section-2.1-4" class="pilcrow">¶</a></p>
 <p id="section-2.1-5">Finally, the sx:structure defined in <span>[<a href="#I-D.draft-ietf-netconf-trace-ctx-extension" class="cite xref">I-D.draft-ietf-netconf-trace-ctx-extension</a>]</span> SHOULD be present in any error message from the server.<a href="#section-2.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1316,9 +1315,9 @@ sub-systems and, together with the network devices they manage, they effectively
       <h2 id="name-security-considerations">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-3-1">The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effect on other systems. This knowledge may be used by unauthorized entities to infer a map of a managed network.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">All advice mentioned in the <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> under the Privacy Considerations and Security Considerations also apply to this document.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">The RESTCONF protocol has to (1) use a secure transport layer (e.g., TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span> and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) has to use mutual authentication.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<p id="section-3-1">The traceparent and tracestate headers make it easier to track and correlate the flow of requests and their downstream effects on other systems. This information may be used by unauthorized entities to infer a map of a managed network.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">All advice mentioned in <span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> under Privacy Considerations and Security Considerations also applies to this document.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">The RESTCONF protocol has to (1) use a secure transport layer (for example, TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span> and QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>) and (2) use mutual authentication.<a href="#section-3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1334,7 +1333,7 @@ sub-systems and, together with the network devices they manage, they effectively
       <h2 id="name-acknowledgments">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="section-5-1">The authors would like to acknowledge the valuable implementation feedback from Per Andersson.  Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini and Erwin Vrolijk for their help with the demos regarding integrations.  The help and support from Med Boucadair, Jean Quilbeuf and Benoît Claise has also been invaluable to this work.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">The authors would like to acknowledge the valuable implementation feedback from Per Andersson. Many thanks to Raul Rivas Felix, Alexander Stoklasa, Luca Relandini, and Erwin Vrolijk for their help with the demo integrations. The help and support from Med Boucadair, Jean Quilbeuf, and Benoît Claise have also been invaluable to this work.<a href="#section-5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
@@ -1448,8 +1447,8 @@ sub-systems and, together with the network devices they manage, they effectively
         <h3 id="name-unsuccessful-creation-of-ne">
 <a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-unsuccessful-creation-of-ne" class="section-name selfRef">Unsuccessful creation of New Data Resources (from Appendix B.2.1 of <span class="cite xref">[RFC8040]</span>)</a>
         </h3>
-<p id="appendix-A.2-1"><span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> specifies that a vendor MAY validate the tracestate header and the processing rules SHOULD be followed.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.2-2">Example of a badly formated tracestate header using <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> example (Appendix B.2.1), in which a server receives a higher traceparent version 03:<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-1"><span>[<a href="#W3C-Trace-Context" class="cite xref">W3C-Trace-Context</a>]</span> specifies that a vendor MAY validate the tracestate header and that the processing rules SHOULD be followed.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-2">Example of a badly formatted tracestate header using the <span>[<a href="#RFC8040" class="cite xref">RFC8040</a>]</span> example (Appendix B.2.1), in which a server receives a higher traceparent version 03:<a href="#appendix-A.2-2" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.2-3">
 <pre>
   POST /restconf/data/example-jukebox:jukebox/library HTTP/1.1
@@ -1480,7 +1479,7 @@ sub-systems and, together with the network devices they manage, they effectively
   traceparent: 00-4bf92f3577b34da6a3ce929d0e0e4736-00f067aa0ba902b7-00
 </pre><a href="#appendix-A.2-5" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.2-6">Note that the API call was succesful but the traceparent header is new with its trace-flags set to 0 and the tracestate header was deleted.<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
+<p id="appendix-A.2-6">Note that the API call was successful, but the traceparent header is new with its trace-flags set to 0 and the tracestate header was removed.<a href="#appendix-A.2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1490,6 +1489,8 @@ sub-systems and, together with the network devices they manage, they effectively
       <h2 id="name-changes-to-be-deleted-by-rf">
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-changes-to-be-deleted-by-rf" class="section-name selfRef">Changes (to be deleted by RFC Editor)</a>
       </h2>
+<p id="appendix-B-1">## From version 10 to 11
+- Grammar cleanups<a href="#appendix-B-1" class="pilcrow">¶</a></p>
 <div id="from-version-09-to-10">
 <section id="appendix-B.1">
         <h3 id="name-from-version-09-to-10">
@@ -1497,10 +1498,10 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.1-1.1">
-            <p id="appendix-B.1-1.1.1">Updated security considerations based on Sheppard review.<a href="#appendix-B.1-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.1-1.1.1">Updated security considerations based on the Shepherd review.<a href="#appendix-B.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.1-1.2">
-            <p id="appendix-B.1-1.2.1">Added  Christian Rennerskog as co-author<a href="#appendix-B.1-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.1-1.2.1">Added Christian Rennerskog as a co-author.<a href="#appendix-B.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1512,16 +1513,16 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.2-1.1">
-            <p id="appendix-B.2-1.1.1">Explain MAY vs W3C MUST for tracestate (OPSDir comment)<a href="#appendix-B.2-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.2-1.1.1">Explained MAY vs. W3C MUST for tracestate (OPSDir comment).<a href="#appendix-B.2-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.2-1.2">
-            <p id="appendix-B.2-1.2.1">Mention "participating in a trace" (modifying headers) (OPSDir comment)<a href="#appendix-B.2-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.2-1.2.1">Mentioned "participating in a trace" (modifying headers) (OPSDir comment).<a href="#appendix-B.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.2-1.3">
-            <p id="appendix-B.2-1.3.1">Fixed RFC 2119 boilerplate spacing to match exact BCP 14 text<a href="#appendix-B.2-1.3.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.2-1.3.1">Fixed RFC 2119 boilerplate spacing to match the exact BCP 14 text.<a href="#appendix-B.2-1.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.2-1.4">
-            <p id="appendix-B.2-1.4.1">Updated document date<a href="#appendix-B.2-1.4.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.2-1.4.1">Updated the document date.<a href="#appendix-B.2-1.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1533,16 +1534,16 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.3-1.1">
-            <p id="appendix-B.3-1.1.1">Improved Error-handling example to show the most common scenario based on W3C standard.<a href="#appendix-B.3-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.3-1.1.1">Improved the error-handling example to show the most common scenario based on the W3C standard.<a href="#appendix-B.3-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.3-1.2">
-            <p id="appendix-B.3-1.2.1">Uplifting dates<a href="#appendix-B.3-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.3-1.2.1">Updated the dates.<a href="#appendix-B.3-1.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.3-1.3">
-            <p id="appendix-B.3-1.3.1">Serveral edits based on OpsDir comments<a href="#appendix-B.3-1.3.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.3-1.3.1">Several edits based on OpsDir comments.<a href="#appendix-B.3-1.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.3-1.4">
-            <p id="appendix-B.3-1.4.1">Security considerations for Quic and Mutual Authentication<a href="#appendix-B.3-1.4.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.3-1.4.1">Added security considerations for QUIC and mutual authentication.<a href="#appendix-B.3-1.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1554,7 +1555,7 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.4-1.1">
-            <p id="appendix-B.4-1.1.1">More missing edits, uplifting dates<a href="#appendix-B.4-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.4-1.1.1">More missing edits; updated dates.<a href="#appendix-B.4-1.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1566,7 +1567,7 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.5-1.1">
-            <p id="appendix-B.5-1.1.1">More missing edits<a href="#appendix-B.5-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.5-1.1.1">More missing edits.<a href="#appendix-B.5-1.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1578,7 +1579,7 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.6-1.1">
-            <p id="appendix-B.6-1.1.1">Removed unused references and terminology<a href="#appendix-B.6-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.6-1.1.1">Removed unused references and terminology.<a href="#appendix-B.6-1.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1590,10 +1591,10 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.7-1.1">
-            <p id="appendix-B.7-1.1.1">Abbreviation change<a href="#appendix-B.7-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.7-1.1.1">Abbreviation change.<a href="#appendix-B.7-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.7-1.2">
-            <p id="appendix-B.7-1.2.1">"ietf-trace-contex:trace-context-error-info" should have been a container in example<a href="#appendix-B.7-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.7-1.2.1">"ietf-trace-contex:trace-context-error-info" should have been a container in the example.<a href="#appendix-B.7-1.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1605,13 +1606,13 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.8-1.1">
-            <p id="appendix-B.8-1.1.1">Added abbreviations to terminology<a href="#appendix-B.8-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.8-1.1.1">Added abbreviations to the terminology.<a href="#appendix-B.8-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.8-1.2">
-            <p id="appendix-B.8-1.2.1">error messages are SHOULD to align with W3C handling.<a href="#appendix-B.8-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.8-1.2.1">Error messages are SHOULD to align with W3C handling.<a href="#appendix-B.8-1.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.8-1.3">
-            <p id="appendix-B.8-1.3.1">Addapted example to YANG module changes in reference.<a href="#appendix-B.8-1.3.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.8-1.3.1">Adapted the example to YANG module changes in the reference.<a href="#appendix-B.8-1.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1623,37 +1624,37 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.9-1.1">
-            <p id="appendix-B.9-1.1.1">Added WGLC comments<a href="#appendix-B.9-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.1.1">Added WGLC comments.<a href="#appendix-B.9-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.2">
-            <p id="appendix-B.9-1.2.1">Changed namespaces and module name<a href="#appendix-B.9-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.2.1">Changed namespaces and module name.<a href="#appendix-B.9-1.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.3">
-            <p id="appendix-B.9-1.3.1">Fix error in error response<a href="#appendix-B.9-1.3.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.3.1">Fixed an error in the error response.<a href="#appendix-B.9-1.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.4">
-            <p id="appendix-B.9-1.4.1">Comments from Med Boucadair<a href="#appendix-B.9-1.4.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.4.1">Comments from Med Boucadair.<a href="#appendix-B.9-1.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.5">
-            <p id="appendix-B.9-1.5.1">Removed markdown formatting of tracestate and traceparent, as toolchain could not handle this properly<a href="#appendix-B.9-1.5.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.5.1">Removed markdown formatting of tracestate and traceparent, as the toolchain could not handle it properly.<a href="#appendix-B.9-1.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.6">
-            <p id="appendix-B.9-1.6.1">Removed references to RFC8341 (NACM) as the passage in the security considerations no longer need it<a href="#appendix-B.9-1.6.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.6.1">Removed references to RFC 8341 (NACM), as the passage in the security considerations no longer needed it.<a href="#appendix-B.9-1.6.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.7">
-            <p id="appendix-B.9-1.7.1">Rearranged text in introduction to include referenes in a more natural order<a href="#appendix-B.9-1.7.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.7.1">Rearranged the text in the introduction to include references in a more natural order.<a href="#appendix-B.9-1.7.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.8">
-            <p id="appendix-B.9-1.8.1">Removed several references to "we" and replaced with more neutral language<a href="#appendix-B.9-1.8.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.8.1">Removed several references to "we" and replaced them with more neutral language.<a href="#appendix-B.9-1.8.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.9">
-            <p id="appendix-B.9-1.9.1">Clarified that everything described as MUST requirements in this document only apply to RESTCONF implementations that implement this document. Other RESTCONF implementations do not need to care about this document, it's an optional extension<a href="#appendix-B.9-1.9.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.9.1">Clarified that everything described as MUST requirements in this document applies only to RESTCONF implementations that support this document; other RESTCONF implementations do not need to care about it, as it is an optional extension.<a href="#appendix-B.9-1.9.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.10">
-            <p id="appendix-B.9-1.10.1">Clarified that the YANG modules used by this document is defined by the sibling document for NETCONF<a href="#appendix-B.9-1.10.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.10.1">Clarified that the YANG modules used by this document are defined by the sibling NETCONF document.<a href="#appendix-B.9-1.10.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.9-1.11">
-            <p id="appendix-B.9-1.11.1">Lots of updated wording based on review feedback<a href="#appendix-B.9-1.11.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.9-1.11.1">Lots of updated wording based on review feedback.<a href="#appendix-B.9-1.11.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </section>
@@ -1665,19 +1666,19 @@ sub-systems and, together with the network devices they manage, they effectively
         </h3>
 <ul class="normal">
 <li class="normal" id="appendix-B.10-1.1">
-            <p id="appendix-B.10-1.1.1">Added Security considerations<a href="#appendix-B.10-1.1.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.10-1.1.1">Added Security Considerations.<a href="#appendix-B.10-1.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.10-1.2">
-            <p id="appendix-B.10-1.2.1">Added Acknowledgements<a href="#appendix-B.10-1.2.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.10-1.2.1">Added Acknowledgments.<a href="#appendix-B.10-1.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.10-1.3">
-            <p id="appendix-B.10-1.3.1">Added several Normative references<a href="#appendix-B.10-1.3.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.10-1.3.1">Added several normative references.<a href="#appendix-B.10-1.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.10-1.4">
-            <p id="appendix-B.10-1.4.1">Added links to latest document on github<a href="#appendix-B.10-1.4.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.10-1.4.1">Added links to the latest document on GitHub.<a href="#appendix-B.10-1.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.10-1.5">
-            <p id="appendix-B.10-1.5.1">Added RESTCONF example for success and error<a href="#appendix-B.10-1.5.1" class="pilcrow">¶</a></p>
+            <p id="appendix-B.10-1.5.1">Added a RESTCONF example for success and error.<a href="#appendix-B.10-1.5.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="appendix-B.10-1.6">
             <p id="appendix-B.10-1.6.1">Modified Error Handling to reflect better W3C alignment based on implementation feedback<a href="#appendix-B.10-1.6.1" class="pilcrow">¶</a></p>
