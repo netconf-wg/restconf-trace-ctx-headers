@@ -201,6 +201,7 @@ In this case, the server cannot parse the traceparent header and the response wo
 Note that the API call was successful, but the traceparent header is new with its trace-flags set to 0 and the tracestate header was removed.
 
 # Changes (to be deleted by RFC Editor)
+
 ## From version 10 to 11
 - Grammar cleanups
 
