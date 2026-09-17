@@ -89,17 +89,18 @@ Table of Contents
      A.2.  Unsuccessful creation of New Data Resources (from
            Appendix B.2.1 of RFC8040)
    Appendix B.  Changes (to be deleted by RFC Editor)
-     B.1.  From version 09 to 10
-     B.2.  From version 08 to 09
-     B.3.  From version 07 to 08
-     B.4.  From version 06 to 07
-     B.5.  From version 05 to 06
-     B.6.  From version 04 to 05
-     B.7.  From version 03 to 04
-     B.8.  From version 02 to 03
-     B.9.  From version 01 to 02
-     B.10. From version 00 to -01
-     B.11. From version 00 to
+     B.1.  From version 10 to 11
+     B.2.  From version 09 to 10
+     B.3.  From version 08 to 09
+     B.4.  From version 07 to 08
+     B.5.  From version 06 to 07
+     B.6.  From version 05 to 06
+     B.7.  From version 04 to 05
+     B.8.  From version 03 to 04
+     B.9.  From version 02 to 03
+     B.10. From version 01 to 02
+     B.11. From version 00 to -01
+     B.12. From version 00 to
             draft-ietf-netconf-restconf-trace-ctx-headers-00
    Authors' Addresses
 
@@ -352,15 +353,17 @@ A.2.  Unsuccessful creation of New Data Resources (from Appendix B.2.1
 
 Appendix B.  Changes (to be deleted by RFC Editor)
 
-   ## From version 10 to 11 - Grammar cleanups
+B.1.  From version 10 to 11
 
-B.1.  From version 09 to 10
+   *  Grammar cleanups
+
+B.2.  From version 09 to 10
 
    *  Updated security considerations based on the Shepherd review.
 
    *  Added Christian Rennerskog as a co-author.
 
-B.2.  From version 08 to 09
+B.3.  From version 08 to 09
 
    *  Explained MAY vs. W3C MUST for tracestate (OPSDir comment).
 
@@ -371,7 +374,7 @@ B.2.  From version 08 to 09
 
    *  Updated the document date.
 
-B.3.  From version 07 to 08
+B.4.  From version 07 to 08
 
    *  Improved the error-handling example to show the most common
       scenario based on the W3C standard.
@@ -382,26 +385,26 @@ B.3.  From version 07 to 08
 
    *  Added security considerations for QUIC and mutual authentication.
 
-B.4.  From version 06 to 07
+B.5.  From version 06 to 07
 
    *  More missing edits; updated dates.
 
-B.5.  From version 05 to 06
+B.6.  From version 05 to 06
 
    *  More missing edits.
 
-B.6.  From version 04 to 05
+B.7.  From version 04 to 05
 
    *  Removed unused references and terminology.
 
-B.7.  From version 03 to 04
+B.8.  From version 03 to 04
 
    *  Abbreviation change.
 
    *  "ietf-trace-contex:trace-context-error-info" should have been a
       container in the example.
 
-B.8.  From version 02 to 03
+B.9.  From version 02 to 03
 
    *  Added abbreviations to the terminology.
 
@@ -409,7 +412,7 @@ B.8.  From version 02 to 03
 
    *  Adapted the example to YANG module changes in the reference.
 
-B.9.  From version 01 to 02
+B.10.  From version 01 to 02
 
    *  Added WGLC comments.
 
@@ -441,7 +444,7 @@ B.9.  From version 01 to 02
 
    *  Lots of updated wording based on review feedback.
 
-B.10.  From version 00 to -01
+B.11.  From version 00 to -01
 
    *  Added Security Considerations.
 
@@ -458,7 +461,7 @@ B.10.  From version 00 to -01
 
    *  Firmed up error handling and YANG-library to MUST-requirements
 
-B.11.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
+B.12.  From version 00 to draft-ietf-netconf-restconf-trace-ctx-
        headers-00
 
    *  Adopted by NETCONF WG
