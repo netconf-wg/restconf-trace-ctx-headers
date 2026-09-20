@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-17T01:53:58.668751+00:00",
+  "timestamp": "2026-09-20T01:48:15.856676+00:00",
   "repo": "netconf-wg/restconf-trace-ctx-headers",
   "labels": [
     {
@@ -413,6 +413,34 @@
           "updatedAt": "2026-03-17T17:16:30Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOLDJd488AAAABD58Pdw",
+      "title": "Wglc",
+      "url": "https://github.com/netconf-wg/restconf-trace-ctx-headers/pull/13",
+      "state": "MERGED",
+      "author": "rgaglian",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Preparing for IETF Last call",
+      "createdAt": "2026-09-17T09:53:29Z",
+      "updatedAt": "2026-09-17T09:54:24Z",
+      "baseRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "baseRefName": "main",
+      "baseRefOid": "2fc3c8ef62e21f20f490f408998009fa7f037ce0",
+      "headRepository": "netconf-wg/restconf-trace-ctx-headers",
+      "headRefName": "wglc",
+      "headRefOid": "8a32b7e3173f68a8ecf372b602da071b3e65043d",
+      "closedAt": "2026-09-17T09:54:24Z",
+      "mergedAt": "2026-09-17T09:54:24Z",
+      "mergedBy": "rgaglian",
+      "mergeCommit": {
+        "oid": "c65a13e30e326d1640f3fee559e47da1d29704b9"
+      },
+      "comments": [],
       "reviews": []
     }
   ]
